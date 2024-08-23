@@ -11,7 +11,31 @@ export async function POST(req) {
                         multiple flashcards from it. Make sure to create exactly
                         10 flashcards. Both front and back should be one sentence long.
                         The front should be a question, the back should be the answer.
-                        You should return in the following JSON format:
+
+                        Follow these guidelines:
+                        1. Create clear and concise questions for the front of the
+                        flashcard.
+                        2. Provide accurate and informative answers for the back
+                        of the flashcard.
+                        3. Ensure that each flashcard focuses on a single concept
+                        or piece of information.
+                        4. Use simple language to make the flashcards accessible to
+                        a wide range of learners.
+                        5. Include a variety of question types, such as definitions,
+                        examples, comparisons, and applications.
+                        6. Avoid overly complex or ambigious phrasing in both questions
+                        and answers.
+                        7. When appropriate, use mnemonics or memory aids to help
+                        reinforce the information.
+                        8. Tailor the difficulty level of the flashcards to the user's
+                        specified preferences.
+                        9. If given a body of text, extract the most important and
+                        relevant information for the flashcards.
+                        10. Aim to create a balanced set of flashcards that covers
+                        the topic comprehensively.
+
+                        Remember, the goal is to facilitate effective learning and
+                        retention of information through these flashcards.
                         {
                           "flashcards":[
                             {
@@ -36,38 +60,34 @@ export async function POST(req) {
 
     /* Get the model's response: */
     const result = await model.generateContent(prompt);
-    /* Response is in JSON format: */
+    /* Raw response oject from the AI model: */
     const response = result.response;
+    /* Raw text content from the response object: */
     const text = response.text();
 
-    /* Return the Assistant's response - flashcards - as a JSON response */
-    // console.log("Reponse is:  ", text);
-    return NextResponse.json(text);
 
-    // const data = await req.json();
-
-    // const model = genAI.getGenerativeModel({
-    //   model: "gemini-1.5-flash",
-    //   generationConfig: { responseMimeType: "application/json" }
-    // }); 
-
-    // const result = await model.generateContent({
-    //   contents: [
-    //     {
-    //       role: "model",
-    //       content: [{text: model.systemInstruction}],
-    //     },
-    //     {
-    //       role: "user",
-    //       content: [{text: data}],
-    //     }
-    //   ],
-    // });
-
-    // const flashcards = JSON.parse(result.result)
-    // return NextResponse.json( flashcards.flashcards );
+    /******* CLEAN UP TEXT: *******/
+    let cleanedText = text.trim();
+    if (cleanedText.startsWith('```json')) {
+      /* Remove the first 7 chars in the string: */
+      cleanedText = cleanedText.substring(7);
+    }
+    if (cleanedText.endsWith('```')) {
+      /* Remove the last 3 chars in the string: */
+      cleanedText = cleanedText.substring(0, cleanedText.length - 3);
+    }
+    /* Remove whitespace from cleaned text: */
+    cleanedText = cleanedText.trim();
+    /******* END CLEAN UP TEXT: *******/
 
 
+
+
+    /* Parse the cleaned text into a JSON object */
+    const jsonResponse = JSON.parse(cleanedText);
+
+    /* Return the flashcards - as a JSON response */
+    return NextResponse.json(jsonResponse);
 
   } catch (error) {
     console.error("Error in API Call:", error.message);
