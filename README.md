@@ -29,26 +29,20 @@ The Student Learning SaaS is built to help students improve their learning effic
 - **Node.js**: For backend functionality.
 - **React**: For building the interactive user interface.
 - **Tailwind CSS**: For designing a modern and responsive UI.
+- **Vercel**: For deployment.
 - **Clerk**: For user authentication and management.
 
 ## Usage
 
+Link: _coming soon_
+
 - **Create Flashcards**: Users can generate flashcards by inputting topics or notes, which the application then processes into study material.
-
 - **Study Sessions**: Engage in study sessions using the custom flashcards, tailored to individual learning needs.
-
 - **User Authentication**: Sign in or sign up securely through Clerk to access your flashcards and track your progress.
-
 - **Future Payment Options**: Stay tuned for the upcoming feature that will allow users to subscribe and make payments through Stripe, unlocking additional features and content.
 
-## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
 ## Authors
 
-- **[Your Name](https://github.com/limitlez2020)**
-
-## Contact
-
-For any inquiries, please contact [Your Email](mailto:youremail@example.com).
+- David Fortune Akinremi (moi 🙈)
