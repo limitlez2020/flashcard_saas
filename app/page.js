@@ -44,9 +44,9 @@ export default function Generate() {
   return (
     // <div className="max-w-md mx-auto px-4">
     <div>
-      <div className="w-full h-screen min-h-full flex flex-col items-center justify-center">
+      <div className="w-full min-h-full flex flex-col items-center justify-center">
         {/* Header: */}
-        <div className="w-full items-center pt-10 pb-40">
+        <div className="w-full items-center pt-10 pb-28">
           <h1 className="text-2xl text-center font-bold">Flashcards</h1>
         </div>
 
@@ -74,7 +74,7 @@ export default function Generate() {
         
         {/* Dsiplay the Flashcards gotten from the API: */}
         {flashcards.length > 0 && (
-          <div className="mt-4">
+          <div className="flex flex-col h-full mt-28 mx-16 mb-16">
             <h2 className="text-xl font-semibold mb-2">
               Generated Flashcards
             </h2>
