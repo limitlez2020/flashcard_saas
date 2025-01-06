@@ -1,6 +1,12 @@
 'use client';
 
 import { useState } from 'react';
+import { Montserrat } from 'next/font/google';
+import { Oswald } from 'next/font/google';
+
+const monstserrat = Montserrat({ subsets: ['latin'] });
+const oswald = Oswald({ subsets: ['latin'] });
+
 
 export default function Generate() {
   const [text, setText] = useState('');
@@ -44,10 +50,24 @@ export default function Generate() {
   return (
     // <div className="max-w-md mx-auto px-4">
     <div>
-      <div className="w-full min-h-full flex flex-col items-center justify-center">
+      <div className="w-full min-h-screen bg-[#0C0C0E] flex flex-col items-center">
+        {/* Nav Bar: */}
+        <div className='w-full flex justify-between items-center px-5 py-5'>
+          {/* Logo: */}
+          <div className='flex items-center bg-[#DCF360] rounded-full p-3'>
+            {/* <img src='logo.png' alt='Logo' className='w-10 h-10' /> */}
+          </div>
+          {/* Github Link: */}
+          <button className='fllex items-center px-3 py-2 bg-[#232127] rounded-md'
+                  onClick={() => window.open('https://github.com/limitlez2020/flashcard_saas')}>
+            <p className='text-center text-white text-xs'> Github </p> 
+          </button>
+        </div>
+
+
         {/* Header: */}
         <div className="w-full items-center pt-10 pb-28">
-          <h1 className="text-2xl text-center font-bold">Flashcards</h1>
+          <h1 className="text-2xl text-white text-center font-bold">Flashcards</h1>
         </div>
 
         {/* Generate Flashcards: */}
@@ -75,16 +95,23 @@ export default function Generate() {
         {/* Dsiplay the Flashcards gotten from the API: */}
         {flashcards.length > 0 && (
           <div className="flex flex-col h-full mt-28 mx-16 mb-16">
-            <h2 className="text-xl font-semibold mb-2">
+            <h2 className="text-lg text-white font-medium mb-2">
               Generated Flashcards
             </h2>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {flashcards.map((flashcard, index) => (
-                <div key={index} className="bg-white shadow-md rounded-lg p-4">
-                  <h3 className="text-lg font-semibold">Front:</h3>
-                  <p>{flashcard.front}</p>
-                  <h3 className="text-lg font-semibold mt-4">Back:</h3>
-                  <p>{flashcard.back}</p>
+                /* Each Flashcard: */
+                <div key={index} className="relative bg-white shadow-md rounded-lg p-4 h-96">
+                  {/* Black dot: */}
+                  <div className='w-4 h-4 absolute right-4 flex rounded-full justify-items-end bg-black'></div>
+
+                  <div className="h-full flex flex-col ">
+                    <h3 className={`${oswald.className} text-3xl font-bold`}> QUESTION </h3>
+                    <p>{flashcard.front}</p>
+                  </div>
+                  {/* <h3 className="text-lg font-semibold mt-4">Back:</h3>
+                  <p>{flashcard.back}</p> */}
                 </div>
               ))}
             </div>
