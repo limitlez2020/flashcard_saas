@@ -34,7 +34,7 @@ The Student Learning SaaS is built to help students improve their learning effic
 
 ## Usage
 
-Link: _coming soon_
+Link: https://my-flashcard-saas.vercel.app/
 
 - **Create Flashcards**: Users can generate flashcards by inputting topics or notes, which the application then processes into study material.
 - **Study Sessions**: Engage in study sessions using the custom flashcards, tailored to individual learning needs.
