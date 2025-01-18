@@ -13,13 +13,6 @@ const inclusive_sans = Inclusive_Sans({ subsets: ['latin'], weight: '400' });
 export default function Generate() {
   const [text, setText] = useState('');
   const [flashcards, setFlashcards] = useState([]);
-  const [isFlipped, setIsFlipped] = useState(false);
-
-
-  /* Toggle the flip state of the flashcard */
-  const flipCard = () => {
-    setIsFlipped(!isFlipped);
-  }
 
   const handleSubmit = async () => {
     if (!text.trim()) {
@@ -52,6 +45,48 @@ export default function Generate() {
       alert('An error occurred while generating flashcards. Please try again.')
     }
   }
+
+
+  /* Create a Flashcard Component 
+   * This is how a *single* flashcard will look and behave
+   */
+  function Flashcard({flashcard, index}) {
+    /* Flip state of the flashcard */
+    const [isFlipped, setIsFlipped] = useState(false);
+
+    /* Toggle the flip state of the flashcard */
+    const flipCard = () => {
+    setIsFlipped(!isFlipped);
+    }
+
+    /* Display the flashcard */
+    return (
+      <div key={index} 
+          className="relative bg-white shadow-md rounded-lg p-4 w-80 h-96 cursor-pointer"
+          onClick={flipCard}
+      >
+        {!isFlipped ? (
+          /* Flashcard Front: */
+          <div className="absolute h-full w-full flex flex-col rotate-0">
+            <h3 className={`${oswald.className} text-3xl font-bold`}> 
+              {/* Flascard Number */}
+              {((index+1) < 9) ? '0'+(index+1) : (index)} 
+            </h3>
+            <p className='w-full pr-5'>{flashcard.front}</p>
+          </div>
+
+          ) : (
+
+          /* Flashcard Back: */
+          <div className="absolute h-full w-full flex flex-col rotate-0">
+            <h3 className="text-lg font-semibold mt-4">Back:</h3>
+            <p className='w-full pr-8'>{flashcard.back}</p>
+          </div>
+        )}
+      </div>
+    )
+  }
+  
 
 
 
@@ -109,37 +144,12 @@ export default function Generate() {
         {/* Dsiplay the Flashcards gotten from the API: */}
         {flashcards.length > 0 && (
           <div className="flex flex-col h-full mt-28 mx-16 mb-16">
-            {/* <h2 className="text-lg font-medium mb-2">
-              Generated Flashcards
-            </h2> */}
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {/* Each Flashcard */}
                 {flashcards.map((flashcard, index) => (
-                /* Card Cointainer: */
-                <div key={index} 
-                     className="relative bg-white shadow-md rounded-lg p-4 w-80 h-96 cursor-pointer"
-                     onClick={flipCard}
-                >
-                  {!isFlipped ? (
-                    /* Flashcard Front: */
-                    <div className="absolute h-full w-full flex flex-col rotate-0">
-                      <h3 className={`${oswald.className} text-3xl font-bold`}> 
-                        {/* Flascard Number */}
-                        {((index+1) < 9) ? '0'+(index+1) : (index)} 
-                      </h3>
-                      <p className='w-full pr-5'>{flashcard.front}</p>
-                    </div>
-
-                    ) : (
-
-                    /* Flashcard Back: */
-                    <div className="absolute h-full w-full flex flex-col rotate-0">
-                      <h3 className="text-lg font-semibold mt-4">Back:</h3>
-                      <p className='w-full pr-8'>{flashcard.back}</p>
-                    </div>
-                  )}
-                </div>
+                  /* Create an instance of the Flashcard Component */
+                  <Flashcard flashcard={flashcard} index={index} key={index} />
               ))}
             </div>
           </div>
