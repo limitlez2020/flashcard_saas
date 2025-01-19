@@ -1,15 +1,17 @@
 'use client';
 
 import { useState } from 'react';
-import { Montserrat } from 'next/font/google';
+import { Montserrat, Raleway } from 'next/font/google';
 import { Oswald } from 'next/font/google';
 import { Inclusive_Sans } from 'next/font/google';
 import { Space_Mono } from 'next/font/google';
+import { Raleway } from 'next/font/google';
 
 const monstserrat = Montserrat({ subsets: ['latin'] });
 const oswald = Oswald({ subsets: ['latin'] });
 const inclusive_sans = Inclusive_Sans({ subsets: ['latin'], weight: ['400'] });
 const space_mono = Space_Mono({ subsets: ['latin'], weight: ['400', '700']});
+const raleway = Raleway({ subsets: ['latin'] });
 
 
 export default function Generate() {
@@ -112,16 +114,16 @@ export default function Generate() {
 
 
         {/* Header: */}
-        <div className="w-full flex flex-col items-center pt-20 pb-28 justify-center align-middle">
-          <h1 className={`${space_mono} text-6xl text-center font-bold tracking-widest`}>FLASHCARD</h1>
+        <div className="w-full flex flex-col items-center pt-20 pb-24 justify-center align-middle">
+          <h1 className={`${raleway.className} text-7xl text-center font-bold`}>STUDY PRO</h1>
           
-          <h3 className="text-lg mb-4">
+          <h3 className={`${space_mono.className} text-lg mb-4`}>
             Generate the flashcards
           </h3>
         </div>
 
         {/* Generate Flashcards: */}
-        <div className="h-full w-1/4 flex flex-row gap-4">
+        <div className={`${space_mono.className} h-full w-1/4 flex flex-col`}>
           
           {/* <div className='flex flex-row justify-center align-middle'> */}
           {/* Get Text to generate flashcards on: */}
@@ -129,13 +131,14 @@ export default function Generate() {
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="Enter text"
-            className="w-3/4 h-10 p-3 text-sm border rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-black"
+            className="w-full h-10 px-3 py-2 text-sm border-black border-2 rounded-2xl mb-4 
+                       no-scrollbar focus:outline-none"
             rows={4}
           />
 
           <button
             onClick={handleSubmit}
-            className="w-1/4 h-10 bg-[#282828] text-white font-medium py-2 rounded-md hover:bg-gray-700"
+            className="w-full h-10 bg-[#282828] text-white self-center text-sm py-2 rounded-md hover:bg-gray-700"
           >
             Generate
           </button>
