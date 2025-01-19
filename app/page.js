@@ -4,10 +4,12 @@ import { useState } from 'react';
 import { Montserrat } from 'next/font/google';
 import { Oswald } from 'next/font/google';
 import { Inclusive_Sans } from 'next/font/google';
+import { Space_Mono } from 'next/font/google';
 
 const monstserrat = Montserrat({ subsets: ['latin'] });
 const oswald = Oswald({ subsets: ['latin'] });
-const inclusive_sans = Inclusive_Sans({ subsets: ['latin'], weight: '400' });
+const inclusive_sans = Inclusive_Sans({ subsets: ['latin'], weight: ['400'] });
+const space_mono = Space_Mono({ subsets: ['latin'], weight: ['400', '700']});
 
 
 export default function Generate() {
@@ -86,7 +88,7 @@ export default function Generate() {
       </div>
     )
   }
-  
+
 
 
 
@@ -111,7 +113,7 @@ export default function Generate() {
 
         {/* Header: */}
         <div className="w-full flex flex-col items-center pt-20 pb-28 justify-center align-middle">
-          <h1 className={`${inclusive_sans} text-6xl text-center font-bold tracking-widest`}>FLASHCARD</h1>
+          <h1 className={`${space_mono} text-6xl text-center font-bold tracking-widest`}>FLASHCARD</h1>
           
           <h3 className="text-lg mb-4">
             Generate the flashcards
