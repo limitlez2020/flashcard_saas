@@ -5,7 +5,6 @@ import { Montserrat, Raleway } from 'next/font/google';
 import { Oswald } from 'next/font/google';
 import { Inclusive_Sans } from 'next/font/google';
 import { Space_Mono } from 'next/font/google';
-import { Raleway } from 'next/font/google';
 
 const monstserrat = Montserrat({ subsets: ['latin'] });
 const oswald = Oswald({ subsets: ['latin'] });
