@@ -118,7 +118,7 @@ export default function Generate() {
           <h1 className={`${raleway.className} text-7xl text-center font-bold`}>STUDY PRO</h1>
           
           <h3 className={`${space_mono.className} text-lg mb-4`}>
-            Generate the flashcards
+            Generate study flashcards
           </h3>
         </div>
 
@@ -131,14 +131,14 @@ export default function Generate() {
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="Enter text"
-            className="w-full h-10 px-3 py-2 text-sm border-black border-2 rounded-2xl mb-4 
+            className="w-full h-24 px-3 py-2 text-sm border-black border-2 rounded-xl mb-4 
                        no-scrollbar focus:outline-none"
             rows={4}
           />
 
           <button
             onClick={handleSubmit}
-            className="w-full h-10 bg-[#282828] text-white self-center text-sm py-2 rounded-md hover:bg-gray-700"
+            className="w-full h-10 bg-[#282828] text-white self-center text-sm py-2 rounded-md hover:bg-gray-800"
           >
             Generate
           </button>
