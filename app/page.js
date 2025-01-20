@@ -5,6 +5,7 @@ import { Montserrat, Raleway } from 'next/font/google';
 import { Oswald } from 'next/font/google';
 import { Inclusive_Sans } from 'next/font/google';
 import { Space_Mono } from 'next/font/google';
+import { ArrowPathIcon } from '@heroicons/react/20/solid';
 
 const monstserrat = Montserrat({ subsets: ['latin'] });
 const oswald = Oswald({ subsets: ['latin'] });
@@ -80,8 +81,10 @@ export default function Generate() {
             </p>
 
             {/* Flip icon: */}
-            <div className='absolute bottom-2 text-center w-10 h-10 bg-black rounded-full'>
-    
+            <div className='absolute bottom-2 left-1/2 transform -translate-x-1/2 w-10 h-10
+                            bg-black rounded-full text-white flex items-center justify-center'
+            >
+              <ArrowPathIcon className='w-5 h-5'/>
             </div>
           </div>
 
@@ -96,6 +99,13 @@ export default function Generate() {
               <p className={`${space_mono.className} px-4`}>
                 {flashcard.back}
               </p>
+            </div>
+
+            {/* Flip icon: */}
+            <div className='absolute bottom-2 left-1/2 transform -translate-x-1/2 w-10 h-10
+                            bg-black rounded-full text-white flex items-center justify-center'
+            >
+              <ArrowPathIcon className='w-5 h-5'/>
             </div>
           </div>
         )}
