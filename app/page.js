@@ -5,7 +5,7 @@ import { Montserrat, Raleway } from 'next/font/google';
 import { Oswald } from 'next/font/google';
 import { Inclusive_Sans } from 'next/font/google';
 import { Space_Mono } from 'next/font/google';
-import { ArrowPathIcon } from '@heroicons/react/20/solid';
+import { AcademicCapIcon, ArrowPathIcon, BoltIcon } from '@heroicons/react/20/solid';
 
 const monstserrat = Montserrat({ subsets: ['latin'] });
 const oswald = Oswald({ subsets: ['latin'] });
@@ -123,14 +123,15 @@ export default function Generate() {
         {/* Nav Bar: */}
         <div className='w-full flex justify-between items-center px-5 py-5'>
           {/* Logo: */}
-          <div className='flex items-center bg-white shadow-2xl border-black border-[1px] rounded-full p-3'>
-            {/* <img src='logo.png' alt='Logo' className='w-10 h-10' /> */}
-            F.
+          <div className='flex items-center justify-center bg-white shadow-gray-300 shadow-md border-black border-[1px] rounded-full p-2 cursor-pointer'>
+            {/* <p className="w-5 h-5 font-semibold flex justify-center">F.</p> */}
+            <AcademicCapIcon className='w-5 h-5 text-black'/>
+
           </div>
           {/* Github Link: */}
           <button className='fllex items-center px-3 py-2 bg-[#232127] rounded-md'
                   onClick={() => window.open('https://github.com/limitlez2020/flashcard_saas')}>
-            <p className='text-center text-white text-xs'> Github </p> 
+            <p className={`${raleway.className} text-center text-white font-semibold text-xs`}> Github </p> 
           </button>
         </div>
 
