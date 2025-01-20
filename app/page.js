@@ -65,25 +65,38 @@ export default function Generate() {
     /* Display the flashcard */
     return (
       <div key={index} 
-          className="relative bg-white shadow-md rounded-lg p-4 w-80 h-96 cursor-pointer"
+          className="bg-white shadow-md rounded-lg p-4 w-80 h-96 cursor-pointer"
           onClick={flipCard}
       >
         {!isFlipped ? (
           /* Flashcard Front: */
-          <div className="absolute h-full w-full flex flex-col rotate-0">
-            <h3 className={`${oswald.className} text-3xl font-bold`}> 
+          <div className="relative h-full w-full flex flex-col justify-center rotate-0">
+            <h3 className={`${raleway.className} absolute top-2 left-2 text-5xl font-bold`}> 
               {/* Flascard Number */}
               {((index+1) < 9) ? '0'+(index+1) : (index)} 
             </h3>
-            <p className='w-full pr-5'>{flashcard.front}</p>
+            <p className={`${space_mono.className} w-full pr-5 text-center`}>
+              {flashcard.front}
+            </p>
+
+            {/* Flip icon: */}
+            <div className='absolute bottom-2 text-center w-10 h-10 bg-black rounded-full'>
+    
+            </div>
           </div>
 
           ) : (
 
           /* Flashcard Back: */
-          <div className="absolute h-full w-full flex flex-col rotate-0">
-            <h3 className="text-lg font-semibold mt-4">Back:</h3>
-            <p className='w-full pr-8'>{flashcard.back}</p>
+          <div className="relative h-full w-full">
+            <h3 className={`${raleway.className} absolute top-2 left-0 right-0 text-center text-xl font-bold mt-5`}>
+              ANSWER
+            </h3>
+            <div className='flex h-full justify-normal text-center items-center'>
+              <p className={`${space_mono.className} px-4`}>
+                {flashcard.back}
+              </p>
+            </div>
           </div>
         )}
       </div>
