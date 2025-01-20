@@ -17,6 +17,8 @@ const raleway = Raleway({ subsets: ['latin'] });
 export default function Generate() {
   const [text, setText] = useState('');
   const [flashcards, setFlashcards] = useState([]);
+  /* Track which flashcard is being displayed */
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleSubmit = async () => {
     if (!text.trim()) {
@@ -123,9 +125,10 @@ export default function Generate() {
         {/* Nav Bar: */}
         <div className='w-full flex justify-between items-center px-5 py-5'>
           {/* Logo: */}
-          <div className='flex items-center justify-center bg-white shadow-gray-300 shadow-md border-black border-[1px] rounded-full p-2 cursor-pointer'>
+          <div className='flex items-center justify-center bg-white shadow-gray-300 shadow-md
+                        border-black border-[1px] rounded-full p-2 cursor-pointer'>
             {/* <p className="w-5 h-5 font-semibold flex justify-center">F.</p> */}
-            <AcademicCapIcon className='w-5 h-5 text-black'/>
+            <AcademicCapIcon className='w-[18px] h-[18px] text-black'/>
 
           </div>
           {/* Github Link: */}
@@ -174,11 +177,8 @@ export default function Generate() {
           <div className="flex flex-col h-full mt-28 mx-16 mb-16">
 
             <div className="flex items-center justify-center gap-4">
-                {/* Each Flashcard */}
-                {flashcards.map((flashcard, index) => (
-                  /* Create an instance of the Flashcard Component */
-                  <Flashcard flashcard={flashcard} index={index} key={index} />
-              ))}
+              {/* Create flashcard to be displayed -- only display current flashcard */}
+              <Flashcard flashcard={flashcards[currentIndex]} index={currentIndex} />
             </div>
           </div>
         )}
