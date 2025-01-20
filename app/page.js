@@ -5,7 +5,8 @@ import { Montserrat, Raleway } from 'next/font/google';
 import { Oswald } from 'next/font/google';
 import { Inclusive_Sans } from 'next/font/google';
 import { Space_Mono } from 'next/font/google';
-import { AcademicCapIcon, ArrowPathIcon, BoltIcon } from '@heroicons/react/20/solid';
+import { ArrowLongLeftIcon, ArrowLongRightIcon, ArrowPathIcon } from '@heroicons/react/20/solid';
+import { AcademicCapIcon } from '@heroicons/react/24/outline'
 
 const monstserrat = Montserrat({ subsets: ['latin'] });
 const oswald = Oswald({ subsets: ['latin'] });
@@ -19,6 +20,9 @@ export default function Generate() {
   const [flashcards, setFlashcards] = useState([]);
   /* Track which flashcard is being displayed */
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  /* The amount of flashcards we have: */
+  const flashcardsTotal = 2
 
   const handleSubmit = async () => {
     if (!text.trim()) {
@@ -51,6 +55,38 @@ export default function Generate() {
       alert('An error occurred while generating flashcards. Please try again.')
     }
   }
+
+
+
+
+  /* Handle moving to the previous flashcard: */
+  const prevFlashcard = () => {
+    /* Update the current flashcard index: */ 
+    /* We also want it to wrap around */
+    if (currentIndex === 0) {
+      setCurrentIndex(flashcardsTotal - 1);
+    }
+    else {
+      setCurrentIndex(currentIndex - 1);
+    }
+  }
+
+
+
+  /* Handle moving to the next flashcard: */
+  const nextFlashcard = () => {
+    /* Update the current flashcard index: */
+    /* Make it wrap around as well: */
+    if (currentIndex === flashcardsTotal - 1) {
+      setCurrentIndex(0);
+    }
+    else {
+      setCurrentIndex(currentIndex + 1);
+    }
+  }
+
+
+
 
 
   /* Create a Flashcard Component 
@@ -174,12 +210,28 @@ export default function Generate() {
         
         {/* Dsiplay the Flashcards gotten from the API: */}
         {flashcards.length > 0 && (
-          <div className="flex flex-col h-full mt-28 mx-16 mb-16">
+          <div className="flex flex-row justify-center items-center h-full mt-28 mx-16 mb-16 gap-12">
 
-            <div className="flex items-center justify-center gap-4">
-              {/* Create flashcard to be displayed -- only display current flashcard */}
+            {/* Previous Icon -- go to previous flashcard: */}
+            <button className='border-black border-2 rounded-full p-3'
+                    onClick={prevFlashcard}
+            >
+              <ArrowLongLeftIcon className='w-5 h-5 text-black'/>
+            </button>
+
+            {/* Flashcard Container: */}
+            <div className="flex items-center justify-center">
+              {/* We want to create a stack of flashcards */}
+              {/* Only display the current flashcard */}
               <Flashcard flashcard={flashcards[currentIndex]} index={currentIndex} />
             </div>
+
+            {/* Next Icon -- go to next flashcard: */}
+            <button className='border-black border-2 rounded-full p-3'
+                    onClick={nextFlashcard}
+            >
+              <ArrowLongRightIcon className='w-5 h-5 text-black'/>
+            </button>
           </div>
         )}
 
