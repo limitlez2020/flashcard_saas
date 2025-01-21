@@ -9,7 +9,7 @@ export async function POST(req) {
     model: "gemini-1.5-flash",
     systemInstruction: `You are a flashcard creator, you take in text and create
                         multiple flashcards from it. Make sure to create exactly
-                        2 flashcards. Both front and back should be one sentence long.
+                        3 flashcards. Both front and back should be one sentence long.
                         The front should be a question, the back should be the answer.
 
                         Follow these guidelines:
