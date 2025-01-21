@@ -215,15 +215,8 @@ export default function Generate() {
         {/* Dsiplay the Flashcards gotten from the API: */}
         {/* Flashcard Area */}
         {flashcards.length > 0 && (
-          <div className='flex flex-col justify-center items-center'>
-            <div className="flex lg:flex-row md:flex-row flex-col justify-center items-center h-full mt-28 mb-7 lg:gap-12 md:gap-5 gap-2">
-              {/* Previous Icon -- go to previous flashcard: */}
-              <button className='border-black border-2 rounded-full lg:p-3 md:p-3 p-2'
-                      onClick={prevFlashcard}
-              >
-                <ArrowLongLeftIcon className='lg:w-5 md:w-5 w-4 lg:h-5 md:h-5 h-4 text-black'/>
-              </button>
-
+          <div className='flex flex-col justify-center items-center gap-5'>
+            <div className="flex flex-col justify-center items-center h-full mt-28 gap-5">
               {/* Flashcard Container: */}
               <div className="flex items-center justify-center">
                 {/* We want to create a stack of flashcards */}
@@ -231,12 +224,26 @@ export default function Generate() {
                 <Flashcard flashcard={flashcards[currentIndex]} index={currentIndex} />
               </div>
 
-              {/* Next Icon -- go to next flashcard: */}
-              <button className='border-black border-2 rounded-full lg:p-3 md:p-3 p-2'
-                      onClick={nextFlashcard}
-              >
-                <ArrowLongRightIcon className='lg:w-5 md:w-5 w-4 lg:h-5 md:h-5 h-4 text-black'/>
-              </button>
+              <div className='flex flex-row justify-center items-center gap-16'>
+                {/* Previous Icon -- go to previous flashcard: */}
+                <button className='border-black border-2 rounded-2xl p-3'
+                        onClick={prevFlashcard}
+                >
+                  <ArrowLongLeftIcon className='w-5 h-5 text-black'/>
+                </button>
+
+                {/* Display Flashcard progress (in number): */}
+                <p className={` ${raleway.className} text-center text-black text-base`}>
+                  {currentIndex + 1} / {flashcardsTotal}
+                </p>
+
+                {/* Next Icon -- go to next flashcard: */}
+                <button className='border-black border-2 rounded-2xl p-3'
+                        onClick={nextFlashcard}
+                >
+                  <ArrowLongRightIcon className='w-5 h-5 text-black'/>
+                </button>
+              </div>
             </div>
 
 
