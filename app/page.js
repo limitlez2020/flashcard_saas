@@ -179,17 +179,16 @@ export default function Generate() {
 
         {/* Header: */}
         <div className="w-full flex flex-col items-center pt-20 pb-24 justify-center align-middle">
-          <h1 className={`${raleway.className} text-7xl text-center font-bold`}>STUDY PRO</h1>
+          <h1 className={`${raleway.className} lg:text-7xl md:text-5xl text-4xl text-center font-bold`}>STUDY PRO</h1>
           
-          <h3 className={`${space_mono.className} text-lg mb-4`}>
+          <h3 className={`${space_mono.className} lg:text-lg md:text-lg text-base mb-4`}>
             Generate study flashcards
           </h3>
         </div>
 
         {/* Generate Flashcards: */}
-        <div className={`${space_mono.className} h-full w-1/4 flex flex-col`}>
+        <div className={`${space_mono.className} h-full lg:w-1/4 md:w-1/4 w-3/5 flex flex-col`}>
           
-          {/* <div className='flex flex-row justify-center align-middle'> */}
           {/* Get Text to generate flashcards on: */}
           <textarea
             value={text}
@@ -215,12 +214,12 @@ export default function Generate() {
         {/* Flashcard Area */}
         {flashcards.length > 0 && (
           <div className='flex flex-col justify-center items-center'>
-            <div className="flex flex-row justify-center items-center h-full mt-28 mx-16 mb-7 gap-12">
+            <div className="flex lg:flex-row md:flex-row flex-col justify-center items-center h-full mt-28 mb-7 lg:gap-12 md:gap-5 gap-2">
               {/* Previous Icon -- go to previous flashcard: */}
-              <button className='border-black border-2 rounded-full p-3'
+              <button className='border-black border-2 rounded-full lg:p-3 md:p-3 p-2'
                       onClick={prevFlashcard}
               >
-                <ArrowLongLeftIcon className='w-5 h-5 text-black'/>
+                <ArrowLongLeftIcon className='lg:w-5 md:w-5 w-4 lg:h-5 md:h-5 h-4 text-black'/>
               </button>
 
               {/* Flashcard Container: */}
@@ -231,10 +230,10 @@ export default function Generate() {
               </div>
 
               {/* Next Icon -- go to next flashcard: */}
-              <button className='border-black border-2 rounded-full p-3'
+              <button className='border-black border-2 rounded-full lg:p-3 md:p-3 p-2'
                       onClick={nextFlashcard}
               >
-                <ArrowLongRightIcon className='w-5 h-5 text-black'/>
+                <ArrowLongRightIcon className='lg:w-5 md:w-5 w-4 lg:h-5 md:h-5 h-4 text-black'/>
               </button>
             </div>
 
