@@ -23,10 +23,12 @@ export default function Generate() {
 
   /* The amount of flashcards we have: */
   const flashcardsTotal = 2
+  /* Flashcard Progress Bar Tracking: */
+  const progressBar = ((currentIndex+1) / flashcardsTotal) * 100
 
   const handleSubmit = async () => {
     if (!text.trim()) {
-      alert('Please enter some text to generate flashcards.');
+      // alert('Please enter some text to generate flashcards.');
       return;
     }
   
@@ -193,6 +195,7 @@ export default function Generate() {
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="Enter text"
+            required
             className="w-full h-24 px-3 py-2 text-sm border-black border-2 rounded-xl mb-4 
                        no-scrollbar focus:outline-none"
             rows={4}
@@ -209,9 +212,9 @@ export default function Generate() {
         
         
         {/* Dsiplay the Flashcards gotten from the API: */}
+        {/* Flashcard Area */}
         {flashcards.length > 0 && (
-          <div className="flex flex-row justify-center items-center h-full mt-28 mx-16 mb-16 gap-12">
-
+          <div className="flex flex-row justify-center items-center h-full mt-28 mx-16 mb-7 gap-12">
             {/* Previous Icon -- go to previous flashcard: */}
             <button className='border-black border-2 rounded-full p-3'
                     onClick={prevFlashcard}
@@ -232,9 +235,16 @@ export default function Generate() {
             >
               <ArrowLongRightIcon className='w-5 h-5 text-black'/>
             </button>
+
           </div>
         )}
 
+        {/* Progress Bar for the Flashcard: */}
+        <div className='relative w-80 h-2 bg-slate-100 border-black border-[1px] mb-16 rounded-md'>
+          <div className='absolute top-0 left-0 bg-gradient-to-tr from-black to-[#023bcc] h-full rounded-md'
+              style={{ width: `${progressBar}%` }}>
+          </div>
+        </div>
       </div>
     </div>
   )
