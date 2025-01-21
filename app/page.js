@@ -179,7 +179,7 @@ export default function Generate() {
 
         {/* Header: */}
         <div className="w-full flex flex-col items-center pt-20 pb-24 justify-center align-middle">
-          <h1 className={`${raleway.className} lg:text-7xl md:text-5xl text-4xl text-center font-bold`}>STUDY PRO</h1>
+          <h1 className={`${raleway.className} lg:text-7xl md:text-6xl text-4xl text-center font-bold`}>STUDY PRO</h1>
           
           <h3 className={`${space_mono.className} lg:text-lg md:text-lg text-base mb-4`}>
             Generate study flashcards
@@ -187,7 +187,7 @@ export default function Generate() {
         </div>
 
         {/* Generate Flashcards: */}
-        <div className={`${space_mono.className} h-full lg:w-1/4 md:w-1/4 w-3/5 flex flex-col`}>
+        <div className={`${space_mono.className} h-full lg:w-1/4 md:w-1/3 w-3/5 flex flex-col`}>
           
           {/* Get Text to generate flashcards on: */}
           <textarea
