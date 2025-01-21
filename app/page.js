@@ -22,7 +22,7 @@ export default function Generate() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   /* The amount of flashcards we have: */
-  const flashcardsTotal = 2
+  const flashcardsTotal = 3
   /* Flashcard Progress Bar Tracking: */
   const progressBar = ((currentIndex+1) / flashcardsTotal) * 100
 
