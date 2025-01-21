@@ -179,7 +179,9 @@ export default function Generate() {
 
         {/* Header: */}
         <div className="w-full flex flex-col items-center pt-20 pb-24 justify-center align-middle">
-          <h1 className={`${raleway.className} lg:text-7xl md:text-6xl text-4xl text-center font-bold`}>STUDY PRO</h1>
+          <h1 className={`${raleway.className} lg:text-7xl md:text-6xl text-4xl text-center font-bold`}>
+            STUDY PRO
+          </h1>
           
           <h3 className={`${space_mono.className} lg:text-lg md:text-lg text-base mb-4`}>
             Generate study flashcards
@@ -239,7 +241,7 @@ export default function Generate() {
 
 
             {/* Progress Bar for the Flashcard: */}
-            <div className='relative w-80 h-2 bg-slate-100 border-black border-[1px] mb-16 rounded-md'>
+            <div className='relative w-80 h-1 bg-gray-300 mb-16 rounded-md'>
               <div className='absolute top-0 left-0 bg-gradient-to-tr from-black to-[#023bcc] h-full rounded-md'
                   style={{ width: `${progressBar}%` }}>
               </div>
