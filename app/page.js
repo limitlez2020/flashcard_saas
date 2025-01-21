@@ -122,7 +122,8 @@ export default function Generate() {
 
             {/* Flip icon: */}
             <div className='absolute bottom-2 left-1/2 transform -translate-x-1/2 w-10 h-10
-                            bg-black rounded-full text-white flex items-center justify-center'
+                            bg-[#282828] rounded-full text-white flex items-center
+                            justify-center hover:bg-[#0f0312]'
             >
               <ArrowPathIcon className='w-5 h-5'/>
             </div>
@@ -170,9 +171,11 @@ export default function Generate() {
 
           </div>
           {/* Github Link: */}
-          <button className='fllex items-center px-3 py-2 bg-[#232127] rounded-md'
+          <button className='flex items-center px-3 py-2 bg-[#232127] rounded-md hover:bg-[#0f0312]'
                   onClick={() => window.open('https://github.com/limitlez2020/flashcard_saas')}>
-            <p className={`${raleway.className} text-center text-white font-semibold text-xs`}> Github </p> 
+            <p className={`${raleway.className} text-center text-white font-semibold text-xs`}>
+              Github
+            </p> 
           </button>
         </div>
 
@@ -204,7 +207,7 @@ export default function Generate() {
 
           <button
             onClick={handleSubmit}
-            className="w-full h-10 bg-[#282828] text-white self-center text-sm py-2 rounded-md hover:bg-gray-800"
+            className="w-full h-10 bg-[#282828] text-white self-center text-sm py-2 rounded-md hover:bg-[#0f0312]"
           >
             Generate
           </button>
@@ -226,7 +229,7 @@ export default function Generate() {
 
               <div className='flex flex-row justify-center items-center gap-16'>
                 {/* Previous Icon -- go to previous flashcard: */}
-                <button className='border-black border-2 rounded-2xl p-3'
+                <button className='border-black border-2 rounded-2xl p-3 hover:bg-neutral-200'
                         onClick={prevFlashcard}
                 >
                   <ArrowLongLeftIcon className='w-5 h-5 text-black'/>
@@ -238,7 +241,7 @@ export default function Generate() {
                 </p>
 
                 {/* Next Icon -- go to next flashcard: */}
-                <button className='border-black border-2 rounded-2xl p-3'
+                <button className='border-black border-2 rounded-2xl p-3 hover:bg-neutral-200'
                         onClick={nextFlashcard}
                 >
                   <ArrowLongRightIcon className='w-5 h-5 text-black'/>
@@ -248,8 +251,8 @@ export default function Generate() {
 
 
             {/* Progress Bar for the Flashcard: */}
-            <div className='relative w-80 h-1 bg-gray-300 mb-16 rounded-md'>
-              <div className='absolute top-0 left-0 bg-gradient-to-tr from-black to-[#023bcc] h-full rounded-md'
+            <div className='relative w-80 h-1 bg-neutral-300 mb-24 rounded-md'>
+              <div className='absolute top-0 left-0 bg-gradient-to-tr from-black to-[#9300b8] h-full rounded-md'
                   style={{ width: `${progressBar}%` }}>
               </div>
             </div>
