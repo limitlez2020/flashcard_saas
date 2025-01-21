@@ -214,37 +214,40 @@ export default function Generate() {
         {/* Dsiplay the Flashcards gotten from the API: */}
         {/* Flashcard Area */}
         {flashcards.length > 0 && (
-          <div className="flex flex-row justify-center items-center h-full mt-28 mx-16 mb-7 gap-12">
-            {/* Previous Icon -- go to previous flashcard: */}
-            <button className='border-black border-2 rounded-full p-3'
-                    onClick={prevFlashcard}
-            >
-              <ArrowLongLeftIcon className='w-5 h-5 text-black'/>
-            </button>
+          <div className='flex flex-col justify-center items-center'>
+            <div className="flex flex-row justify-center items-center h-full mt-28 mx-16 mb-7 gap-12">
+              {/* Previous Icon -- go to previous flashcard: */}
+              <button className='border-black border-2 rounded-full p-3'
+                      onClick={prevFlashcard}
+              >
+                <ArrowLongLeftIcon className='w-5 h-5 text-black'/>
+              </button>
 
-            {/* Flashcard Container: */}
-            <div className="flex items-center justify-center">
-              {/* We want to create a stack of flashcards */}
-              {/* Only display the current flashcard */}
-              <Flashcard flashcard={flashcards[currentIndex]} index={currentIndex} />
+              {/* Flashcard Container: */}
+              <div className="flex items-center justify-center">
+                {/* We want to create a stack of flashcards */}
+                {/* Only display the current flashcard */}
+                <Flashcard flashcard={flashcards[currentIndex]} index={currentIndex} />
+              </div>
+
+              {/* Next Icon -- go to next flashcard: */}
+              <button className='border-black border-2 rounded-full p-3'
+                      onClick={nextFlashcard}
+              >
+                <ArrowLongRightIcon className='w-5 h-5 text-black'/>
+              </button>
             </div>
 
-            {/* Next Icon -- go to next flashcard: */}
-            <button className='border-black border-2 rounded-full p-3'
-                    onClick={nextFlashcard}
-            >
-              <ArrowLongRightIcon className='w-5 h-5 text-black'/>
-            </button>
 
+            {/* Progress Bar for the Flashcard: */}
+            <div className='relative w-80 h-2 bg-slate-100 border-black border-[1px] mb-16 rounded-md'>
+              <div className='absolute top-0 left-0 bg-gradient-to-tr from-black to-[#023bcc] h-full rounded-md'
+                  style={{ width: `${progressBar}%` }}>
+              </div>
+            </div>
           </div>
+
         )}
-
-        {/* Progress Bar for the Flashcard: */}
-        <div className='relative w-80 h-2 bg-slate-100 border-black border-[1px] mb-16 rounded-md'>
-          <div className='absolute top-0 left-0 bg-gradient-to-tr from-black to-[#023bcc] h-full rounded-md'
-              style={{ width: `${progressBar}%` }}>
-          </div>
-        </div>
       </div>
     </div>
   )
