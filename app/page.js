@@ -229,12 +229,14 @@ export default function Generate() {
                   <p className={`${raleway.className} text-2xl font-bold`}>WATER</p>
                 </div>
                 {/* Save Button: */}
-                <button className='bg-[#aec1f3] flex flex-row items-center justify-center gap-2 p-2 border-2 border-black rounded-md'>
+                <button className='bg-[#aec1f3] flex flex-row items-center justify-center
+                                   gap-2 p-2 border-2 border-black rounded-md hover:bg-[#c7d4f4]'>
                   <BookmarkIcon className='w-4 h-4'/>
                   {/* <p className='text-xs text-black'>Save</p> */}
                 </button>
               </div>
               {/* Aproach 2 End */}
+
 
               {/* Flashcard Container: */}
               <div className="flex items-center justify-center">
