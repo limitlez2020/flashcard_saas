@@ -18,6 +18,7 @@ const raleway = Raleway({ subsets: ['latin'] });
 export default function Generate() {
   const [text, setText] = useState('');
   const [flashcards, setFlashcards] = useState([]);
+  const [flashcardTopic, setFlashcardTopic] = useState('');
   /* Track which flashcard is being displayed */
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -50,8 +51,9 @@ export default function Generate() {
       /* Get the flashcards json object from the API */
       const data = await response.json()
 
+      /* Get the topic for the flashcard set */
+      setFlashcardTopic(data.topic)
       /* Extract the flashcards array from the data object */
-      // console.log(data.flashcards);
       setFlashcards(data.flashcards)
     } catch (error) {
       console.error('Error generating flashcards:', error)
@@ -227,7 +229,7 @@ export default function Generate() {
               <div className='flex flex-row justify-between items-center w-80 gap-28'>
                 {/* Topic: */}
                 <div className='flex'>
-                  <p className={`${raleway.className} text-2xl font-bold`}>{flashcards[0].topic}</p>
+                  <p className={`${raleway.className} text-2xl font-bold`}>{flashcardTopic}</p>
                 </div>
                 {/* Save Button: */}
                 <button className='bg-[#aec1f3] flex flex-row items-center justify-center

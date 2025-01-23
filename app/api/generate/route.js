@@ -39,9 +39,10 @@ export async function POST(req) {
                         Remember, the goal is to facilitate effective learning and
                         retention of information through these flashcards.
                         {
-                          "flashcards":[
+                          "topic": "Topic for the flashcard"
+                          "flashcards":
+                          [
                             {
-                              "topic": "Topic for the flashcard"
                               "front": "Front of the card",
                               "back": "Back of the card"
                             }
