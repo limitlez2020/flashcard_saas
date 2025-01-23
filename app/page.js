@@ -6,7 +6,7 @@ import { Oswald } from 'next/font/google';
 import { Inclusive_Sans } from 'next/font/google';
 import { Space_Mono } from 'next/font/google';
 import { ArrowLongLeftIcon, ArrowLongRightIcon, ArrowPathIcon } from '@heroicons/react/20/solid';
-import { AcademicCapIcon } from '@heroicons/react/24/outline'
+import { AcademicCapIcon, BookmarkIcon } from '@heroicons/react/24/outline'
 
 const monstserrat = Montserrat({ subsets: ['latin'] });
 const oswald = Oswald({ subsets: ['latin'] });
@@ -22,7 +22,7 @@ export default function Generate() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   /* The amount of flashcards we have: */
-  const flashcardsTotal = 3
+  const flashcardsTotal = 2
   /* Flashcard Progress Bar Tracking: */
   const progressBar = ((currentIndex+1) / flashcardsTotal) * 100
 
@@ -158,7 +158,6 @@ export default function Generate() {
 
 
   return (
-    // <div className="max-w-md mx-auto px-4">
     <div>
       <div className="w-full min-h-screen bg-[#F1F1F1] flex flex-col items-center">
         {/* Nav Bar: */}
@@ -219,7 +218,24 @@ export default function Generate() {
         {/* Flashcard Area */}
         {flashcards.length > 0 && (
           <div className='flex flex-col justify-center items-center gap-5'>
+
             <div className="flex flex-col justify-center items-center h-full mt-28 gap-5">
+             
+              {/* Approach 2: */}
+              {/* Display Title and save button: */}
+              <div className='flex flex-row justify-between items-center w-80 gap-28'>
+                {/* Title: */}
+                <div className='flex'>
+                  <p className={`${raleway.className} text-2xl font-bold`}>WATER</p>
+                </div>
+                {/* Save Button: */}
+                <button className='bg-[#aec1f3] flex flex-row items-center justify-center gap-2 p-2 border-2 border-black rounded-md'>
+                  <BookmarkIcon className='w-4 h-4'/>
+                  {/* <p className='text-xs text-black'>Save</p> */}
+                </button>
+              </div>
+              {/* Aproach 2 End */}
+
               {/* Flashcard Container: */}
               <div className="flex items-center justify-center">
                 {/* We want to create a stack of flashcards */}
@@ -249,13 +265,29 @@ export default function Generate() {
               </div>
             </div>
 
-
+            {/* Approach 2: */}
             {/* Progress Bar for the Flashcard: */}
             <div className='relative w-80 h-1 bg-neutral-300 mb-24 rounded-md'>
-              <div className='absolute top-0 left-0 bg-gradient-to-tr from-black to-[#9300b8] h-full rounded-md'
+              <div className='absolute top-0 left-0 bg-gradient-to-tr from-black to-[#6E94F9] h-full rounded-md'
                   style={{ width: `${progressBar}%` }}>
               </div>
             </div>
+
+
+            {/* Appraoch 1: */}
+            {/* Progress Bar for the Flashcard: */}
+            {/* <div className='relative w-80 h-1 bg-neutral-300 mb-8 rounded-md'>
+              <div className='absolute top-0 left-0 bg-gradient-to-tr from-black to-[#6E94F9] h-full rounded-md'
+                  style={{ width: `${progressBar}%` }}>
+              </div>
+            </div> */}
+
+
+            {/* Save Button: */}
+            {/* <button className='bg-[#aec1f3] flex flex-row items-center justify-center mb-24 gap-2 p-3 px-7 border-[2px] border-black rounded-md'>
+              <BookmarkIcon className='w-4 h-4'/>
+              <p className='text-xs text-black'>Save</p>
+            </button> */}
           </div>
 
         )}
