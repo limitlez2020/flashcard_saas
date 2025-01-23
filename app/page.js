@@ -51,6 +51,7 @@ export default function Generate() {
       const data = await response.json()
 
       /* Extract the flashcards array from the data object */
+      // console.log(data.flashcards);
       setFlashcards(data.flashcards)
     } catch (error) {
       console.error('Error generating flashcards:', error)
@@ -224,9 +225,9 @@ export default function Generate() {
               {/* Approach 2: */}
               {/* Display Title and save button: */}
               <div className='flex flex-row justify-between items-center w-80 gap-28'>
-                {/* Title: */}
+                {/* Topic: */}
                 <div className='flex'>
-                  <p className={`${raleway.className} text-2xl font-bold`}>WATER</p>
+                  <p className={`${raleway.className} text-2xl font-bold`}>{flashcards[0].topic}</p>
                 </div>
                 {/* Save Button: */}
                 <button className='bg-[#aec1f3] flex flex-row items-center justify-center

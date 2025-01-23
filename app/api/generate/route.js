@@ -11,6 +11,8 @@ export async function POST(req) {
                         multiple flashcards from it. Make sure to create exactly
                         2 flashcards. Both front and back should be one sentence long.
                         The front should be a question, the back should be the answer.
+                        Then write a topic for the flashcard set. Make sure the topic
+                        is exactly 1-2 words.
 
                         Follow these guidelines:
                         1. Create clear and concise questions for the front of the
@@ -39,6 +41,7 @@ export async function POST(req) {
                         {
                           "flashcards":[
                             {
+                              "topic": "Topic for the flashcard"
                               "front": "Front of the card",
                               "back": "Back of the card"
                             }
