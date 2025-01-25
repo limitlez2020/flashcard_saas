@@ -102,6 +102,8 @@ export default function Generate() {
 
     /* Now we add the new flashcard set to the existing sets */
     /* TODO: account for duplicate topics --> we want the keys to be unique */
+    // Try to make the keys like indices or numbers from 0 to infinity, incremeting
+    // every time you add a new set to the local storage 
     existingSetsObject[flashcardTopic] = flashcards;
 
     /* Update the localstorage with the newly added flashcard set */
@@ -111,6 +113,10 @@ export default function Generate() {
   }
 
 
+  // TODO: Fix a problem:
+  // When you are in page 2 of a flashcard set and you type in a new word or phrase to
+  // geenrate a new flashcard set, it generate the new flashcard set but you start from
+  // page 2 instead of page 1.
 
 
 
