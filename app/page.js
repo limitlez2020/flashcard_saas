@@ -65,7 +65,7 @@ export default function Generate() {
 
 
 
-  /* Store Flashcard set in localstorage */
+  /* Create an item for all flashcard sets in localstorage */
   useEffect(() => {
     /* Set an item in localstorage:
      *   - key: flashcardSets --> key to access all the flashcard sets the user saves
@@ -87,6 +87,28 @@ export default function Generate() {
     */
     localStorage.setItem("flashcardSets", JSON.stringify({}));
   }, []);
+
+
+
+
+
+
+  /* Add a flashcard set to the flashcardSets in the localstorage: */
+  const saveFlashcardSet = () => {
+    /* Get the existing flashcard sets in localstorage */
+    const existingSets = localStorage.getItem("flashcardSets");
+    /* Turn the string into an object */
+    const existingSetsObject = JSON.parse(existingSets);
+
+    /* Now we add the new flashcard set to the existing sets */
+    /* TODO: account for duplicate topics --> we want the keys to be unique */
+    existingSetsObject[flashcardTopic] = flashcards;
+
+    /* Update the localstorage with the newly added flashcard set */
+    localStorage.setItem("flashcardSets", JSON.stringify(existingSetsObject));
+
+    console.log("This is what is in the flashcardSets: ", JSON.stringify(existingSetsObject));
+  }
 
 
 
