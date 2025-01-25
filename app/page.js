@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Montserrat, Raleway } from 'next/font/google';
 import { Oswald } from 'next/font/google';
 import { Inclusive_Sans } from 'next/font/google';
@@ -60,6 +60,34 @@ export default function Generate() {
       alert('An error occurred while generating flashcards. Please try again.')
     }
   }
+
+
+
+
+
+  /* Store Flashcard set in localstorage */
+  useEffect(() => {
+    /* Set an item in localstorage:
+     *   - key: flashcardSets --> key to access all the flashcard sets the user saves
+     *   - value: an empty object ---> JSON.stringify({})
+     *   - we want to create an empty object, then add elements
+     *     when the user saves a flashcard set 
+     *   - NOTE: the structure of the 'value' is:
+     *      - an object that contains elements
+     *      - each element is a flashcard set
+     *      - each element has the flashcard title (or unique key) and 
+     *      - an array of objects, each object representing a flashcard in the specific set
+     *   
+     *   - Example representation of the 'value':
+     *     {
+     *       "Biology":         [ {front: "...", back: "..."}, ... ],
+     *       "Fish Species":    [ {front: "...", back: "..."}, ... ],
+     *       ...
+     *     }
+    */
+    localStorage.setItem("flashcardSets", JSON.stringify({}));
+  }, []);
+
 
 
 
