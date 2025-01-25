@@ -55,6 +55,10 @@ export default function Generate() {
       setFlashcardTopic(data.topic)
       /* Extract the flashcards array from the data object */
       setFlashcards(data.flashcards)
+
+      /* Reset the currentIndex count for the flashcard so the
+       * set starts displaying from the first flashcard */
+      setCurrentIndex(0);
     } catch (error) {
       console.error('Error generating flashcards:', error)
       alert('An error occurred while generating flashcards. Please try again.')
@@ -111,12 +115,7 @@ export default function Generate() {
 
     console.log("This is what is in the flashcardSets: ", JSON.stringify(existingSetsObject));
   }
-
-
-  // TODO: Fix a problem:
-  // When you are in page 2 of a flashcard set and you type in a new word or phrase to
-  // geenrate a new flashcard set, it generate the new flashcard set but you start from
-  // page 2 instead of page 1.
+  
 
 
 
