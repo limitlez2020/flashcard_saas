@@ -283,9 +283,9 @@ export default function Generate() {
                 </div>
                 {/* Save Button: */}
                 <button className='bg-[#aec1f3] flex flex-row items-center justify-center
-                                   gap-2 p-2 border-2 border-black rounded-md hover:bg-[#c7d4f4]'>
+                                   gap-2 p-2 border-2 border-black rounded-md hover:bg-[#c7d4f4]'
+                        onClick={saveFlashcardSet}>
                   <BookmarkIcon className='w-4 h-4'/>
-                  {/* <p className='text-xs text-black'>Save</p> */}
                 </button>
               </div>
               {/* Aproach 2 End */}
