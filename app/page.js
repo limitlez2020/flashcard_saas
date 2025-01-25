@@ -69,40 +69,31 @@ export default function Generate() {
 
 
 
-  /* Create an item for all flashcard sets in localstorage */
-  useEffect(() => {
-    /* Set an item in localstorage:
-     *   - key: flashcardSets --> key to access all the flashcard sets the user saves
-     *   - value: an empty object ---> JSON.stringify({})
-     *   - we want to create an empty object, then add elements
-     *     when the user saves a flashcard set 
-     *   - NOTE: the structure of the 'value' is:
-     *      - an object that contains elements
-     *      - each element is a flashcard set
-     *      - each element has the flashcard title (or unique key) and 
-     *      - an array of objects, each object representing a flashcard in the specific set
-     *   
-     *   - Example representation of the 'value':
-     *     {
-     *       "Biology":         [ {front: "...", back: "..."}, ... ],
-     *       "Fish Species":    [ {front: "...", back: "..."}, ... ],
-     *       ...
-     *     }
-    */
-    localStorage.setItem("flashcardSets", JSON.stringify({}));
-  }, []);
-
-
-
-
-
 
   /* Add a flashcard set to the flashcardSets in the localstorage: */
+  /** Set an item in localstorage:
+    *   - key: flashcardSets --> key to access all the flashcard sets the user saves
+    *   - value: an empty object ---> JSON.stringify({})
+    *   - we want to create an empty object, then add elements
+    *     when the user saves a flashcard set 
+    *   - NOTE: the structure of the 'value' is:
+    *      - an object that contains elements
+    *      - each element is a flashcard set
+    *      - each element has the flashcard title (or unique key) and 
+    *      - an array of objects, each object representing a flashcard in the specific set
+    *   
+    *   - Example representation of the 'value':
+    *     {
+    *       "Biology":         [ {front: "...", back: "..."}, ... ],
+    *       "Fish Species":    [ {front: "...", back: "..."}, ... ],
+    *       ...
+    *     }
+    */
   const saveFlashcardSet = () => {
     /* Get the existing flashcard sets in localstorage */
     const existingSets = localStorage.getItem("flashcardSets");
     /* Turn the string into an object */
-    const existingSetsObject = JSON.parse(existingSets);
+    const existingSetsObject = existingSets ? JSON.parse(existingSets) : {};
 
     /* Now we add the new flashcard set to the existing sets */
     /* TODO: account for duplicate topics --> we want the keys to be unique */
@@ -115,7 +106,7 @@ export default function Generate() {
 
     console.log("This is what is in the flashcardSets: ", JSON.stringify(existingSetsObject));
   }
-  
+
 
 
 
@@ -348,6 +339,10 @@ export default function Generate() {
               <BookmarkIcon className='w-4 h-4'/>
               <p className='text-xs text-black'>Save</p>
             </button> */}
+
+
+            {/* TODO: This is just a test */}
+            <p>{localStorage.getItem("flashcardSets")}</p>
           </div>
 
         )}
