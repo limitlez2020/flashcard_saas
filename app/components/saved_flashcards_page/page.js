@@ -28,7 +28,7 @@ export default function saved_flashcards_page() {
           <Link href="/components/saved_flashcards_page">
             <button className='flex items-center px-3 py-2 bg-[#232127] rounded-md hover:bg-[#0f0312]'>
               <p className={`${raleway.className} text-center text-white font-semibold text-xs`}>
-                My Flashcards
+                Flashcards
               </p>
             </button>
           </Link>
