@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { Montserrat, Raleway } from 'next/font/google';
 import { Oswald } from 'next/font/google';
 import { Inclusive_Sans } from 'next/font/google';
@@ -96,9 +97,6 @@ export default function Generate() {
     const existingSetsObject = existingSets ? JSON.parse(existingSets) : {};
 
     /* Now we add the new flashcard set to the existing sets */
-    /* TODO: account for duplicate topics --> we want the keys to be unique */
-    // Try to make the keys like indices or numbers from 0 to infinity, incremeting
-    // every time you add a new set to the local storage 
     existingSetsObject[flashcardTopic] = flashcards;
 
     /* Update the localstorage with the newly added flashcard set */
@@ -219,11 +217,12 @@ export default function Generate() {
 
           </div>
           {/* Github Link: */}
-          <button className='flex items-center px-3 py-2 bg-[#232127] rounded-md hover:bg-[#0f0312]'
-                  onClick={() => window.open('https://github.com/limitlez2020/flashcard_saas')}>
-            <p className={`${raleway.className} text-center text-white font-semibold text-xs`}>
-              Github
-            </p> 
+          <button className='flex items-center px-3 py-2 bg-[#232127] rounded-md hover:bg-[#0f0312]'>
+            <Link href="/components/saved_flashcards_page">
+              <p className={`${raleway.className} text-center text-white font-semibold text-xs`}>
+                Github
+              </p>
+            </Link>
           </button>
         </div>
 
