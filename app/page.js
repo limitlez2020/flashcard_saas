@@ -343,7 +343,7 @@ export default function Generate() {
 
 
             {/* TODO: This is just a test */}
-            <p>{localStorage.getItem("flashcardSets")}</p>
+            {/* <p>{localStorage.getItem("flashcardSets")}</p> */}
           </div>
 
         )}
