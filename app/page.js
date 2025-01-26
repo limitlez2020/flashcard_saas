@@ -208,27 +208,29 @@ export default function Generate() {
     <div>
       <div className="w-full min-h-screen bg-[#F1F1F1] flex flex-col items-center">
         {/* Nav Bar: */}
-        <div className='w-full flex justify-between items-center px-5 py-5'>
-          {/* Logo: */}
-          <div className='flex items-center justify-center bg-white shadow-gray-300 shadow-md
-                        border-black border-[1px] rounded-full p-2 cursor-pointer'>
-            {/* <p className="w-5 h-5 font-semibold flex justify-center">F.</p> */}
-            <AcademicCapIcon className='w-[18px] h-[18px] text-black'/>
+        <div className='w-full flex justify-between items-center mb-20 px-5 py-5'>
+          {/* Logo - link to homepage */}
+          <Link href="/">
+            <div className='flex items-center justify-center bg-white shadow-gray-300 shadow-md
+                          border-black border-[1px] rounded-full p-2 cursor-pointer'>
+              <AcademicCapIcon className='w-[18px] h-[18px] text-black'/>
 
-          </div>
+            </div>
+          </Link>
+
           {/* Github Link: */}
-          <button className='flex items-center px-3 py-2 bg-[#232127] rounded-md hover:bg-[#0f0312]'>
-            <Link href="/components/saved_flashcards_page">
+          <Link href="/components/saved_flashcards_page">
+            <button className='flex items-center px-3 py-2 bg-[#232127] rounded-md hover:bg-[#0f0312]'>
               <p className={`${raleway.className} text-center text-white font-semibold text-xs`}>
                 Github
               </p>
-            </Link>
-          </button>
+            </button>
+          </Link>
         </div>
 
 
         {/* Header: */}
-        <div className="w-full flex flex-col items-center pt-20 pb-24 justify-center align-middle">
+        <div className="w-full flex flex-col items-center pb-24 justify-center align-middle">
           <h1 className={`${raleway.className} lg:text-7xl md:text-6xl text-4xl text-center font-bold`}>
             STUDY PRO
           </h1>
