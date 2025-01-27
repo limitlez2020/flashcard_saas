@@ -129,7 +129,7 @@ export default function SavedFlashcards() {
                 * is an array of objects, so we can just map
                 * over the keys of the objects -- flashcard sets
               */}
-              {savedFlashcards ? 
+              {!savedFlashcards ? 
                 (Object.keys(savedFlashcards).map((topic) => {
                   const flashcards = savedFlashcards[topic];
                   var backgroundColor;
@@ -172,10 +172,10 @@ export default function SavedFlashcards() {
                   )
                 })
               ) : (
-                <p className={`${space_mono.className} text-2xl`}>
-                  NO SAVED FLASHCARDS 🥺
-                </p>)
-              }
+                <p className={`${raleway.className} text-xs`}>
+                  No saved flashcards 🥺
+                </p>
+              )}
             </div>
 
           </div>
