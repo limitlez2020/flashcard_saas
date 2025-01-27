@@ -4,14 +4,48 @@ import { useState } from "react";
 import Link from "next/link";
 import { Raleway, Space_Mono } from "next/font/google";
 import { AcademicCapIcon } from "@heroicons/react/24/outline";
+import { ArrowUpRightIcon } from "@heroicons/react/20/solid";
 
 const raleway = Raleway({ subsets: ['latin'] });
 const space_mono = Space_Mono({ subsets: ['latin'], weight: ['400', '700'] });
 
 
+
+
+function FlashcardFolder () {
+  return (
+    /* Individual Folder: */
+    <div className="flex flex-col gap-[216px] mb-24">
+      <div className="flex relative cursor-pointer">
+        {/* Folder Background: */}
+        <div className="absolute top-2 left-0 bg-[#414040] w-44 h-32 rounded-2xl shadow-2xl"></div>
+
+        {/* Card inside Folder: */}
+        <div className="absolute top-9 left-2 bg-white w-40 h-24 rounded-md -rotate-1 hover:top-8 shadow-2xl"></div>
+
+        {/* Folder Foreground: */}
+        <div className="absolute top-12 bg-[#595858] w-52 h-[156px] rounded-2xl shadow-2xl"></div>
+
+        {/* Arrow Icon: */}
+        <div className="absolute top-[170px] left-3 w-10 h-10 rounded-full">
+          <ArrowUpRightIcon className="text-white w-6 h-6"/>
+        </div>
+      </div>
+
+      {/* Title - of set of flashcards: */}
+      <div className="mt-1 px-3">
+        <p className={` ${raleway.className} font-medium text-xl`}>Rugby Rules</p>
+        <p className={`${space_mono.className} font-light text-sm`}>3 flashcards</p>
+      </div>
+    </div>
+  )
+}
+
+
+
+
 export default function saved_flashcards_page() {
   return (
-    <div>
       <div className="w-full min-h-screen bg-[#F1F1F1] flex flex-col items-center">
         {/* Nav Bar: */}
         <div className='w-full flex justify-between items-center mb-20 px-5 py-5'>
@@ -35,21 +69,37 @@ export default function saved_flashcards_page() {
         </div>
 
         {/* Main Screen Container: */}
-        <div className="flex flex-col w-full justify-center items-center gap-20">
-          {/* Header and subheader: */}
+        <div className="flex flex-col w-full justify-center items-center gap-32">
+          {/* Page Header and subheader: */}
           <div className="flex flex-col text-center">
             <div className={`${raleway.className} text-6xl font-bold`}>
               <p>FLASHCARDS</p>
             </div>
             <div className={`${space_mono.className}`}>
-              <p>❤️ Here are your saved flashcards ❤️</p>
+              <p>Here are your saved flashcards</p>
             </div>
           </div>
 
-          {/* Flashcards Set: */}
+          {/* Display Flashcard Sets: */}
+          <div className={`${raleway.className} flex flex-col w-full px-20 items-start justify-start gap-16`}>
+            {/* Header */}
+            <p className="text-left underline font-medium"> Saved: </p>
+
+            {/* Flashcard Sets */}
+            {/* Display in grid format for responsitivity: */}
+            <div className="flex flex-wrap justify-center gap-x-48">
+
+              {/* Display a Flashcard: */}
+              <FlashcardFolder/>
+              <FlashcardFolder/>
+              <FlashcardFolder/>
+              <FlashcardFolder/>
+
+            </div>
+
+          </div>
 
         </div>
       </div>
-    </div>
   );
 }
