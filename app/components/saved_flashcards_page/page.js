@@ -61,7 +61,12 @@ export default function SavedFlashcards() {
       if (flashcardSets) {
         setSavedFlashcards(flashcardSets);
       }
+      // Test to see if we actyually get the flashcard sets:
+      console.log("The saved sets are:", JSON.stringify(flashcardSets));
+      // It works!!
+      // TODO: delete later
     }
+
   }, []);
 
 
@@ -126,17 +131,24 @@ export default function SavedFlashcards() {
               <FlashcardFolder topic="Water" backgroundColor={"#031518"} foregroundColor={"#073239"}/>
               <FlashcardFolder topic="Coding Beauty" backgroundColor={"#170422"} foregroundColor={"#32094a"}/>
 
-              {/* {text => {
-                for (let i = 0; i < 5; i++) {
-                  return (
-                    <FlashcardFolder 
-                      topic="Rugby Rules"
-                      backgroundColor={"#414040"}
-                      foreground={"#595858"}
-                    />
-                  );
-                }
-              }} */}
+              {/* Map over every set of saved flashcards:
+                * Use Object.keys() to map because saveFlashcards
+                * is an array of objects, so we can just map
+                * over the keys of the objects -- flashcard sets
+              */}
+              {savedFlashcards && Object.keys(savedFlashcards).map((topic) => {
+                const flashcards = savedFlashcards[topic];
+                const backgroundColor = "#414040";
+                const foregroundColor = "#595858";
+                return (
+                  <FlashcardFolder 
+                    key={topic}
+                    topic={topic}
+                    backgroundColor={backgroundColor}
+                    foregroundColor={foregroundColor}
+                  />
+                )
+              })}
             </div>
 
           </div>
