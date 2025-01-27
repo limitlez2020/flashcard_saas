@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Raleway, Space_Mono } from "next/font/google";
 import { AcademicCapIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
@@ -50,6 +50,19 @@ function FlashcardFolder ({topic, foregroundColor, backgroundColor}) {
 
 export default function SavedFlashcards() {
  const [text, setText] = useState("");
+ const [savedFlashcards, setSavedFlashcards] = useState([]);
+
+
+  /* Get the saved flashcard sets from localstorage */
+  useEffect(() => {
+    /* Ensure we are on the client side */
+    if (typeof window != 'undefined') {
+      const flashcardSets = JSON.parse(localStorage.getItem("flashcardSets"));
+      if (flashcardSets) {
+        setSavedFlashcards(flashcardSets);
+      }
+    }
+  }, []);
 
 
   return (
@@ -113,6 +126,17 @@ export default function SavedFlashcards() {
               <FlashcardFolder topic="Water" backgroundColor={"#031518"} foregroundColor={"#073239"}/>
               <FlashcardFolder topic="Coding Beauty" backgroundColor={"#170422"} foregroundColor={"#32094a"}/>
 
+              {/* {text => {
+                for (let i = 0; i < 5; i++) {
+                  return (
+                    <FlashcardFolder 
+                      topic="Rugby Rules"
+                      backgroundColor={"#414040"}
+                      foreground={"#595858"}
+                    />
+                  );
+                }
+              }} */}
             </div>
 
           </div>

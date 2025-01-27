@@ -244,7 +244,7 @@ export default function Generate() {
         <div className={`${space_mono.className} h-full lg:w-1/4 md:w-1/3 w-3/5 flex flex-col`}>
           
           {/* Get Text to generate flashcards on: */}
-          <input
+          <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="Enter text"
