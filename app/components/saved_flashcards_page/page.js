@@ -3,8 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Raleway, Space_Mono } from "next/font/google";
-import { AcademicCapIcon } from "@heroicons/react/24/outline";
-import { ArrowUpRightIcon } from "@heroicons/react/20/solid";
+import { AcademicCapIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { ArrowUpRightIcon, BookmarkIcon, MagnifyingGlassCircleIcon } from "@heroicons/react/20/solid";
 
 const raleway = Raleway({ subsets: ['latin'] });
 const space_mono = Space_Mono({ subsets: ['latin'], weight: ['400', '700'] });
@@ -45,6 +45,9 @@ function FlashcardFolder () {
 
 
 export default function saved_flashcards_page() {
+ const [text, setText] = useState("");
+
+
   return (
       <div className="w-full min-h-screen bg-[#F1F1F1] flex flex-col items-center">
         {/* Nav Bar: */}
@@ -81,13 +84,24 @@ export default function saved_flashcards_page() {
           </div>
 
           {/* Display Flashcard Sets: */}
-          <div className={`${raleway.className} flex flex-col w-full px-20 items-start justify-start gap-16`}>
-            {/* Header */}
-            <p className="text-left underline font-medium"> Saved: </p>
+          <div className={`${raleway.className} flex flex-col w-full px-20 items-center justify-center gap-12`}>
+           
+            {/* Search Bar: */}
+            <div className="flex justify-center items-center w-56 h-10 bg-[#f6f4f4] border-black border-[1px] rounded-xl">
+              {/* <textarea className="flex items-center justify-center bg-[#f6f4f4] w-full h-9 text-xs rounded-3xl no-scrollbar focus:outline-none"
+                        value={text}
+                        onChange={e => setText(e.target.value)}
+                        placeholder="search..."
+              /> */}
+
+              <div className="flex justify-end items-center w-full self-center p-3">
+                <MagnifyingGlassIcon className="w-4 h-4"/>
+              </div>
+            </div>
 
             {/* Flashcard Sets */}
             {/* Display in grid format for responsitivity: */}
-            <div className="flex flex-wrap justify-center gap-x-48">
+            <div className="flex flex-wrap justify-center gap-x-32">
 
               {/* Display a Flashcard: */}
               <FlashcardFolder/>
