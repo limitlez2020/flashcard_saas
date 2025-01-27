@@ -125,12 +125,7 @@ export default function SavedFlashcards() {
             {/* Display in grid format for responsitivity: */}
             <div className="flex flex-wrap justify-center gap-x-32">
 
-              {/* Display a Flashcard: */}
-              <FlashcardFolder topic="Rugby Rules" backgroundColor={"#414040"} foregroundColor={"#595858"}/>
-              <FlashcardFolder topic="Cooking Methods" backgroundColor={"#270505"} foregroundColor={"#4e0a0a"}/>
-              <FlashcardFolder topic="Water" backgroundColor={"#031518"} foregroundColor={"#073239"}/>
-              <FlashcardFolder topic="Coding Beauty" backgroundColor={"#170422"} foregroundColor={"#32094a"}/>
-
+              {/* Display All Flashcard Folders: */}
               {/* Map over every set of saved flashcards:
                 * Use Object.keys() to map because saveFlashcards
                 * is an array of objects, so we can just map
@@ -138,8 +133,36 @@ export default function SavedFlashcards() {
               */}
               {savedFlashcards && Object.keys(savedFlashcards).map((topic) => {
                 const flashcards = savedFlashcards[topic];
-                const backgroundColor = "#414040";
-                const foregroundColor = "#595858";
+                var backgroundColor;
+                var foregroundColor;
+                /* Randomly pick one of the color combos: */
+                const colorCombo = Math.floor(Math.random() * 5)
+                /* Pink */
+                if (colorCombo === 0) {
+                  backgroundColor = "#1e0418";
+                  foregroundColor = "#4d0a3d";
+                }
+                /* Red */
+                else if (colorCombo === 1) {
+                  backgroundColor = "#270505";
+                  foregroundColor = "#4e0a0a";
+                }
+                /* Green */
+                else if (colorCombo === 2) {
+                  backgroundColor = "#031518";
+                  foregroundColor = "#073239";
+                }
+                /* Purple */
+                else if (colorCombo === 3) {
+                  backgroundColor = "#170422";
+                  foregroundColor = "#32094a";
+                }
+                /* Blue */
+                else {
+                  backgroundColor = "#060d2e";
+                  foregroundColor = "#0a164d";
+                }
+       
                 return (
                   <FlashcardFolder 
                     key={topic}
