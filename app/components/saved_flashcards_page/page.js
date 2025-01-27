@@ -129,47 +129,53 @@ export default function SavedFlashcards() {
                 * is an array of objects, so we can just map
                 * over the keys of the objects -- flashcard sets
               */}
-              {savedFlashcards && Object.keys(savedFlashcards).map((topic) => {
-                const flashcards = savedFlashcards[topic];
-                var backgroundColor;
-                var foregroundColor;
-                /* Randomly pick one of the color combos: */
-                const colorCombo = Math.floor(Math.random() * 5)
-                /* Pink */
-                if (colorCombo === 0) {
-                  backgroundColor = "#1e0418";
-                  foregroundColor = "#4d0a3d";
-                }
-                /* Red */
-                else if (colorCombo === 1) {
-                  backgroundColor = "#270505";
-                  foregroundColor = "#4e0a0a";
-                }
-                /* Green */
-                else if (colorCombo === 2) {
-                  backgroundColor = "#031518";
-                  foregroundColor = "#073239";
-                }
-                /* Purple */
-                else if (colorCombo === 3) {
-                  backgroundColor = "#170422";
-                  foregroundColor = "#32094a";
-                }
-                /* Blue */
-                else {
-                  backgroundColor = "#060d2e";
-                  foregroundColor = "#0a164d";
-                }
-       
-                return (
-                  <FlashcardFolder 
-                    key={topic}
-                    topic={topic}
-                    backgroundColor={backgroundColor}
-                    foregroundColor={foregroundColor}
-                  />
-                )
-              })}
+              {savedFlashcards ? 
+                (Object.keys(savedFlashcards).map((topic) => {
+                  const flashcards = savedFlashcards[topic];
+                  var backgroundColor;
+                  var foregroundColor;
+                  /* Randomly pick one of the color combos: */
+                  const colorCombo = Math.floor(Math.random() * 5)
+                  /* Pink */
+                  if (colorCombo === 0) {
+                    backgroundColor = "#1e0418";
+                    foregroundColor = "#4d0a3d";
+                  }
+                  /* Red */
+                  else if (colorCombo === 1) {
+                    backgroundColor = "#270505";
+                    foregroundColor = "#4e0a0a";
+                  }
+                  /* Green */
+                  else if (colorCombo === 2) {
+                    backgroundColor = "#031518";
+                    foregroundColor = "#073239";
+                  }
+                  /* Purple */
+                  else if (colorCombo === 3) {
+                    backgroundColor = "#170422";
+                    foregroundColor = "#32094a";
+                  }
+                  /* Blue */
+                  else {
+                    backgroundColor = "#060d2e";
+                    foregroundColor = "#0a164d";
+                  }
+        
+                  return (
+                    <FlashcardFolder 
+                      key={topic}
+                      topic={topic}
+                      backgroundColor={backgroundColor}
+                      foregroundColor={foregroundColor}
+                    />
+                  )
+                })
+              ) : (
+                <p className={`${space_mono.className} text-2xl`}>
+                  NO SAVED FLASHCARDS 🥺
+                </p>)
+              }
             </div>
 
           </div>
