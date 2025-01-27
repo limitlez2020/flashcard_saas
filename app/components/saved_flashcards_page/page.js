@@ -18,13 +18,17 @@ function FlashcardFolder ({topic, foregroundColor, backgroundColor}) {
     <div className="flex flex-col gap-[92px] mb-24">
       <div className="flex relative w-44 h-32 cursor-pointer">
         {/* Folder Background: */}
-        <div className="absolute top-2 left-0 bg-[#414040] w-full h-full rounded-2xl shadow-2xl"></div>
+        <div className="absolute top-2 left-0 w-full h-full rounded-2xl shadow-2xl"
+             style={{backgroundColor: backgroundColor}}
+        />
 
         {/* Card inside Folder: */}
-        <div className="absolute top-9 left-2 bg-white w-40 h-24 rounded-md -rotate-1 hover:top-8 shadow-2xl"></div>
+        <div className="absolute top-9 left-2 bg-white w-40 h-24 rounded-md -rotate-1 hover:top-8 shadow-2xl"/>
 
         {/* Folder Foreground: */}
-        <div className="absolute top-12 bg-[#595858] w-52 h-[156px] rounded-2xl shadow-2xl"></div>
+        <div className="absolute top-12 w-52 h-[156px] rounded-2xl shadow-2xl"
+             style={{backgroundColor: foregroundColor}}
+        />
 
         {/* Arrow Icon: */}
         <div className="absolute top-[170px] left-3 w-10 h-10 rounded-full">
@@ -44,7 +48,7 @@ function FlashcardFolder ({topic, foregroundColor, backgroundColor}) {
 
 
 
-export default function saved_flashcards_page() {
+export default function SavedFlashcards() {
  const [text, setText] = useState("");
 
 
@@ -104,10 +108,10 @@ export default function saved_flashcards_page() {
             <div className="flex flex-wrap justify-center gap-x-32">
 
               {/* Display a Flashcard: */}
-              <FlashcardFolder topic="Rugby Rules"/>
-              <FlashcardFolder topic="Cooking Methods"/>
-              <FlashcardFolder topic="Water"/>
-              <FlashcardFolder topic="Food Types"/>
+              <FlashcardFolder topic="Rugby Rules" backgroundColor={"#414040"} foregroundColor={"#595858"}/>
+              <FlashcardFolder topic="Cooking Methods" backgroundColor={"#270505"} foregroundColor={"#4e0a0a"}/>
+              <FlashcardFolder topic="Water" backgroundColor={"#031518"} foregroundColor={"#073239"}/>
+              <FlashcardFolder topic="Coding Beauty" backgroundColor={"#170422"} foregroundColor={"#32094a"}/>
 
             </div>
 
