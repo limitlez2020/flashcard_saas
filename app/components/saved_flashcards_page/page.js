@@ -48,6 +48,7 @@ function FlashcardFolder ({topic, foregroundColor, backgroundColor}) {
 
 
 
+
 export default function SavedFlashcards() {
  const [text, setText] = useState("");
  const [savedFlashcards, setSavedFlashcards] = useState([]);
@@ -61,13 +62,10 @@ export default function SavedFlashcards() {
       if (flashcardSets) {
         setSavedFlashcards(flashcardSets);
       }
-      // Test to see if we actyually get the flashcard sets:
-      console.log("The saved sets are:", JSON.stringify(flashcardSets));
-      // It works!!
-      // TODO: delete later
     }
-
   }, []);
+
+
 
 
   return (
