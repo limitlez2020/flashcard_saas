@@ -12,13 +12,13 @@ const space_mono = Space_Mono({ subsets: ['latin'], weight: ['400', '700'] });
 
 
 
-function FlashcardFolder () {
+function FlashcardFolder ({topic, foregroundColor, backgroundColor}) {
   return (
     /* Individual Folder: */
-    <div className="flex flex-col gap-[216px] mb-24">
-      <div className="flex relative cursor-pointer">
+    <div className="flex flex-col gap-[92px] mb-24">
+      <div className="flex relative w-44 h-32 cursor-pointer">
         {/* Folder Background: */}
-        <div className="absolute top-2 left-0 bg-[#414040] w-44 h-32 rounded-2xl shadow-2xl"></div>
+        <div className="absolute top-2 left-0 bg-[#414040] w-full h-full rounded-2xl shadow-2xl"></div>
 
         {/* Card inside Folder: */}
         <div className="absolute top-9 left-2 bg-white w-40 h-24 rounded-md -rotate-1 hover:top-8 shadow-2xl"></div>
@@ -34,7 +34,7 @@ function FlashcardFolder () {
 
       {/* Title - of set of flashcards: */}
       <div className="mt-1 px-3">
-        <p className={` ${raleway.className} font-medium text-xl`}>Rugby Rules</p>
+        <p className={` ${raleway.className} font-medium text-xl`}>{topic}</p>
         <p className={`${space_mono.className} font-light text-sm`}>3 flashcards</p>
       </div>
     </div>
@@ -87,7 +87,7 @@ export default function saved_flashcards_page() {
           <div className={`${raleway.className} flex flex-col w-full px-20 items-center justify-center gap-12`}>
            
             {/* Search Bar: */}
-            <div className="flex justify-center items-center w-56 h-10 bg-[#f6f4f4] border-black border-[1px] rounded-xl">
+            <div className="flex justify-center items-center w-56 h-10 bg-[#f6f4f4] border-black border-[2px] rounded-xl">
               {/* <textarea className="flex items-center justify-center bg-[#f6f4f4] w-full h-9 text-xs rounded-3xl no-scrollbar focus:outline-none"
                         value={text}
                         onChange={e => setText(e.target.value)}
@@ -104,10 +104,10 @@ export default function saved_flashcards_page() {
             <div className="flex flex-wrap justify-center gap-x-32">
 
               {/* Display a Flashcard: */}
-              <FlashcardFolder/>
-              <FlashcardFolder/>
-              <FlashcardFolder/>
-              <FlashcardFolder/>
+              <FlashcardFolder topic="Rugby Rules"/>
+              <FlashcardFolder topic="Cooking Methods"/>
+              <FlashcardFolder topic="Water"/>
+              <FlashcardFolder topic="Food Types"/>
 
             </div>
 
