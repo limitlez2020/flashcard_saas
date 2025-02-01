@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import { Raleway, Space_Mono } from "next/font/google";
 import { ArrowLongLeftIcon, ArrowLongRightIcon } from '@heroicons/react/20/solid';
+import { BookmarkIcon } from '@heroicons/react/24/outline'
+
 
 import Flashcard from "./flashcard";
 
@@ -106,7 +108,7 @@ export default function FlahscardSet(flashcards, flashcardTopic) {
                 style={{ width: `${progressBar}%` }}>
             </div>
           </div>
-          
+
         </div>
 
       )}
