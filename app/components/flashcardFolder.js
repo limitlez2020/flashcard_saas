@@ -7,10 +7,19 @@ const raleway = Raleway({ subsets: ["latin"] })
 const space_mono = Space_Mono({ subsets: ["latin"], weight: ["400", "700"] })
 
 
-export default function FlashcardFolder ({topic, foregroundColor, backgroundColor}) {
+
+export default function FlashcardFolder ({topic, flashcards, foregroundColor, backgroundColor}) {
+  /* Function to display the flashcards in this flashcard folder: */
+  // const displayFlashcards = ( flashcards ) => {
+  //   return <div className="w-full h-full bg-black text-white z-50">{flashcards}</div>
+  // }
+
+
   return (
     /* Individual Folder: */
-    <div className="flex flex-col gap-[88px] mb-24">
+    <div className="flex flex-col gap-[88px] mb-24"
+         onClick={() => displayFlashcards(flashcards)}
+    >
       <div className="flex relative w-44 h-32 cursor-pointer">
         {/* Folder Background: */}
         <div className="absolute top-4 left-0 w-full h-full rounded-2xl shadow-2xl"

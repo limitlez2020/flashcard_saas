@@ -15,7 +15,7 @@ const space_mono = Space_Mono({ subsets: ['latin'], weight: ['400', '700'] });
 
 export default function SavedFlashcards() {
  const [text, setText] = useState("");
- const [savedFlashcards, setSavedFlashcards] = useState([]);
+ const [savedFlashcardSets, setSavedFlashcardSets] = useState([]);
 
 
   /* Get the saved flashcard sets from localstorage */
@@ -24,7 +24,7 @@ export default function SavedFlashcards() {
     if (typeof window != 'undefined') {
       const flashcardSets = JSON.parse(localStorage.getItem("flashcardSets"));
       if (flashcardSets) {
-        setSavedFlashcards(flashcardSets);
+        setSavedFlashcardSets(flashcardSets);
       }
     }
   }, []);
@@ -98,9 +98,9 @@ export default function SavedFlashcards() {
                 * is an array of objects, so we can just map
                 * over the keys of the objects -- flashcard sets
               */}
-              {savedFlashcards ? 
-                (Object.keys(savedFlashcards).map((topic) => {
-                  const flashcards = savedFlashcards[topic];
+              {savedFlashcardSets ? 
+                (Object.keys(savedFlashcardSets).map((topic) => {
+                  const flashcards = savedFlashcardSets[topic];
                   var backgroundColor;
                   var foregroundColor;
                   /* Randomly pick one of the color combos: */
@@ -134,6 +134,7 @@ export default function SavedFlashcards() {
                   return (
                     <FlashcardFolder 
                       key={topic}
+                      flashcards={flashcards}
                       topic={topic}
                       backgroundColor={backgroundColor}
                       foregroundColor={foregroundColor}
