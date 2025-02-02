@@ -69,17 +69,21 @@ export default function SavedFlashcards() {
 
           {/* Display Flashcard Sets: */}
           <div className={`${raleway.className} flex flex-col w-full px-20 items-center justify-center gap-12`}>
-           
-            {/* Search Bar: */}
-            <div className="flex justify-center items-center w-56 h-10 bg-[#f6f4f4] border-black border-[2px] rounded-xl">
-              {/* <textarea className="flex items-center justify-center bg-[#f6f4f4] w-full h-9 text-xs rounded-3xl no-scrollbar focus:outline-none"
-                        value={text}
-                        onChange={e => setText(e.target.value)}
-                        placeholder="search..."
-              /> */}
 
-              <div className="flex justify-end items-center w-full self-center p-3">
-                <MagnifyingGlassIcon className="w-4 h-4"/>
+            <div className="flex flex-row justify-between items-center w-full md:px-28 border-0 border-black">
+              <p className="text-base">Saved:</p>
+
+              {/* Search Bar: */}
+              <div className="flex justify-center items-center w-40 h-10 bg-[#f6f4f4] border-black border-[2px] rounded-xl">
+                {/* <textarea className="flex items-center justify-center bg-[#f6f4f4] w-full h-9 text-xs rounded-3xl no-scrollbar focus:outline-none"
+                          value={text}
+                          onChange={e => setText(e.target.value)}
+                          placeholder="search..."
+                /> */}
+
+                <div className="flex justify-end items-center w-full self-center p-3">
+                  <MagnifyingGlassIcon className="w-4 h-4"/>
+                </div>
               </div>
             </div>
 
