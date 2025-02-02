@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Raleway, Space_Mono } from "next/font/google";
 import { ArrowLongLeftIcon, ArrowLongRightIcon } from '@heroicons/react/20/solid';
 import { BookmarkIcon } from '@heroicons/react/24/outline'
@@ -7,17 +7,58 @@ import { BookmarkIcon } from '@heroicons/react/24/outline'
 
 import Flashcard from "./flashcard";
 
-const raleway = Raleway({ subsets: "latin" });
-const space_mono = Space_Mono({ subsets: "latin", weight: ["400", "700"] });
+const raleway = Raleway({ subsets: ["latin"] });
+const space_mono = Space_Mono({ subsets: ["latin"], weight: ["400", "700"] });
 
 
-export default function FlahscardSet(flashcards, flashcardTopic) {
+export default function FlashcardSet({flashcards, flashcardTopic}) {
   /* Track which flashcard is being displayed */
   const [currentIndex, setCurrentIndex] = useState(0);
-  /* Flashcard Progress Bar Tracking: */
-  const progressBar = ((currentIndex+1) / flashcardsNum) * 100
   /* Total Number of Flashcards: */
   const flashcardsTotal = flashcards.length;
+  console.log("We're testing and the flashcards lenght is: ", flashcardsTotal);
+  /* Flashcard Progress Bar Tracking: */
+  const progressBar = ((currentIndex+1) / flashcardsTotal) * 100;
+
+
+
+
+
+  /* Add a flashcard set to the flashcardSets in the localstorage: */
+  /** Set an item in localstorage:
+    *   - key: flashcardSets --> key to access all the flashcard sets the user saves
+    *   - value: an empty object ---> JSON.stringify({})
+    *   - we want to create an empty object, then add elements
+    *     when the user saves a flashcard set 
+    *   - NOTE: the structure of the 'value' is:
+    *      - an object that contains elements
+    *      - each element is a flashcard set
+    *      - each element has the flashcard title (or unique key) and 
+    *      - an array of objects, each object representing a flashcard in the specific set
+    *   
+    *   - Example representation of the 'value':
+    *     {
+    *       "Biology":         [ {front: "...", back: "..."}, ... ],
+    *       "Fish Species":    [ {front: "...", back: "..."}, ... ],
+    *       ...
+    *     }
+    */
+  const saveFlashcardSet = () => {
+    /* Get the existing flashcard sets in localstorage */
+    const existingSets = localStorage.getItem("flashcardSets");
+    /* Turn the string into an object */
+    const existingSetsObject = existingSets ? JSON.parse(existingSets) : {};
+
+    /* Now we add the new flashcard set to the existing sets */
+    existingSetsObject[flashcardTopic] = flashcards;
+
+    /* Update the localstorage with the newly added flashcard set */
+    localStorage.setItem("flashcardSets", JSON.stringify(existingSetsObject));
+
+    console.log("This is what is in the flashcardSets: ", JSON.stringify(existingSetsObject));
+  }
+
+
 
 
   /* Handle moving to the previous flashcard: */
@@ -48,14 +89,13 @@ export default function FlahscardSet(flashcards, flashcardTopic) {
 
 
 
+
   return (
     <div className={space_mono.className}>
       {flashcards.length > 0 && (
         <div className='flex flex-col justify-center items-center gap-5'>
-
           <div className="flex flex-col justify-center items-center h-full mt-28 gap-5">
             
-            {/* Approach 2: */}
             {/* Display Title and save button: */}
             <div className='flex flex-row justify-between items-center w-80 gap-28'>
               {/* Topic: */}
@@ -101,7 +141,6 @@ export default function FlahscardSet(flashcards, flashcardTopic) {
             </div>
           </div>
 
-          {/* Approach 2: */}
           {/* Progress Bar for the Flashcard: */}
           <div className='relative w-80 h-1 bg-neutral-300 mb-24 rounded-md'>
             <div className='absolute top-0 left-0 bg-gradient-to-tr from-black to-[#6E94F9] h-full rounded-md'

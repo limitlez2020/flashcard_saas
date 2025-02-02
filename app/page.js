@@ -1,17 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
-import { Montserrat, Raleway } from 'next/font/google';
-import { Oswald } from 'next/font/google';
-import { Inclusive_Sans } from 'next/font/google';
-import { Space_Mono } from 'next/font/google';
-import { ArrowLongLeftIcon, ArrowLongRightIcon, ArrowPathIcon } from '@heroicons/react/20/solid';
-import { AcademicCapIcon, BookmarkIcon } from '@heroicons/react/24/outline'
+import { Space_Mono, Raleway } from 'next/font/google';
+import { AcademicCapIcon } from '@heroicons/react/24/outline'
 
-const monstserrat = Montserrat({ subsets: ['latin'] });
-const oswald = Oswald({ subsets: ['latin'] });
-const inclusive_sans = Inclusive_Sans({ subsets: ['latin'], weight: ['400'] });
+import FlashcardSet from './components/flashcardSet';
+
 const space_mono = Space_Mono({ subsets: ['latin'], weight: ['400', '700']});
 const raleway = Raleway({ subsets: ['latin'] });
 
@@ -20,17 +15,9 @@ export default function Generate() {
   const [text, setText] = useState('');
   const [flashcards, setFlashcards] = useState([]);
   const [flashcardTopic, setFlashcardTopic] = useState('');
-  /* Track which flashcard is being displayed */
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  /* The amount of flashcards we have: */
-  const flashcardsTotal = 2
-  /* Flashcard Progress Bar Tracking: */
-  const progressBar = ((currentIndex+1) / flashcardsTotal) * 100
 
   const handleSubmit = async () => {
     if (!text.trim()) {
-      // alert('Please enter some text to generate flashcards.');
       return;
     }
   
@@ -56,10 +43,6 @@ export default function Generate() {
       setFlashcardTopic(data.topic)
       /* Extract the flashcards array from the data object */
       setFlashcards(data.flashcards)
-
-      /* Reset the currentIndex count for the flashcard so the
-       * set starts displaying from the first flashcard */
-      setCurrentIndex(0);
     } catch (error) {
       console.error('Error generating flashcards:', error)
       alert('An error occurred while generating flashcards. Please try again.')
@@ -68,138 +51,6 @@ export default function Generate() {
 
 
 
-
-
-
-  /* Add a flashcard set to the flashcardSets in the localstorage: */
-  /** Set an item in localstorage:
-    *   - key: flashcardSets --> key to access all the flashcard sets the user saves
-    *   - value: an empty object ---> JSON.stringify({})
-    *   - we want to create an empty object, then add elements
-    *     when the user saves a flashcard set 
-    *   - NOTE: the structure of the 'value' is:
-    *      - an object that contains elements
-    *      - each element is a flashcard set
-    *      - each element has the flashcard title (or unique key) and 
-    *      - an array of objects, each object representing a flashcard in the specific set
-    *   
-    *   - Example representation of the 'value':
-    *     {
-    *       "Biology":         [ {front: "...", back: "..."}, ... ],
-    *       "Fish Species":    [ {front: "...", back: "..."}, ... ],
-    *       ...
-    *     }
-    */
-  const saveFlashcardSet = () => {
-    /* Get the existing flashcard sets in localstorage */
-    const existingSets = localStorage.getItem("flashcardSets");
-    /* Turn the string into an object */
-    const existingSetsObject = existingSets ? JSON.parse(existingSets) : {};
-
-    /* Now we add the new flashcard set to the existing sets */
-    existingSetsObject[flashcardTopic] = flashcards;
-
-    /* Update the localstorage with the newly added flashcard set */
-    localStorage.setItem("flashcardSets", JSON.stringify(existingSetsObject));
-
-    console.log("This is what is in the flashcardSets: ", JSON.stringify(existingSetsObject));
-  }
-
-
-
-
-  /* Handle moving to the previous flashcard: */
-  const prevFlashcard = () => {
-    /* Update the current flashcard index: */ 
-    /* We also want it to wrap around */
-    if (currentIndex === 0) {
-      setCurrentIndex(flashcardsTotal - 1);
-    }
-    else {
-      setCurrentIndex(currentIndex - 1);
-    }
-  }
-
-
-
-  /* Handle moving to the next flashcard: */
-  const nextFlashcard = () => {
-    /* Update the current flashcard index: */
-    /* Make it wrap around as well: */
-    if (currentIndex === flashcardsTotal - 1) {
-      setCurrentIndex(0);
-    }
-    else {
-      setCurrentIndex(currentIndex + 1);
-    }
-  }
-
-
-
-
-
-  /* Create a Flashcard Component 
-   * This is how a *single* flashcard will look and behave
-   */
-  function Flashcard({flashcard, index}) {
-    /* Flip state of the flashcard */
-    const [isFlipped, setIsFlipped] = useState(false);
-
-    /* Toggle the flip state of the flashcard */
-    const flipCard = () => {
-    setIsFlipped(!isFlipped);
-    }
-
-    /* Display the flashcard */
-    return (
-      <div key={index} 
-          className="bg-white shadow-md rounded-lg p-4 w-80 h-96 cursor-pointer"
-          onClick={flipCard}
-      >
-        {!isFlipped ? (
-          /* Flashcard Front: */
-          <div className="relative h-full w-full flex flex-col justify-center rotate-0">
-            <h3 className={`${raleway.className} absolute top-2 left-2 text-5xl font-bold`}> 
-              {/* Flascard Number */}
-              {((index+1) < 9) ? '0'+(index+1) : (index)} 
-            </h3>
-            <p className={`${space_mono.className} w-full pr-5 text-center`}>
-              {flashcard.front}
-            </p>
-
-            {/* Flip icon: */}
-            <div className='absolute bottom-2 left-1/2 transform -translate-x-1/2 w-10 h-10
-                            bg-[#282828] rounded-full text-white flex items-center
-                            justify-center hover:bg-[#0f0312]'
-            >
-              <ArrowPathIcon className='w-5 h-5'/>
-            </div>
-          </div>
-
-          ) : (
-
-          /* Flashcard Back: */
-          <div className="relative h-full w-full">
-            <h3 className={`${raleway.className} absolute top-2 left-0 right-0 text-center text-xl font-bold mt-5`}>
-              ANSWER
-            </h3>
-            <div className='flex h-full justify-normal text-center items-center'>
-              <p className={`${space_mono.className} px-4`}>
-                {flashcard.back}
-              </p>
-            </div>
-
-            {/* Flip icon: */}
-            <div className='absolute bottom-2 left-1/2 transform -translate-x-1/2 w-10 h-10
-                            bg-black rounded-full text-white flex items-center justify-center'
-            >
-              <ArrowPathIcon className='w-5 h-5'/>
-            </div>
-          </div>
-        )}
-      </div>
-    )
-  }
 
 
 
@@ -260,93 +111,11 @@ export default function Generate() {
           >
             Generate
           </button>
-          {/* </div> */}
         </div>
         
         
-        {/* Dsiplay the Flashcards gotten from the API: */}
-        {/* Flashcard Area */}
-        {flashcards.length > 0 && (
-          <div className='flex flex-col justify-center items-center gap-5'>
-
-            <div className="flex flex-col justify-center items-center h-full mt-28 gap-5">
-             
-              {/* Approach 2: */}
-              {/* Display Title and save button: */}
-              <div className='flex flex-row justify-between items-center w-80 gap-28'>
-                {/* Topic: */}
-                <div className='flex'>
-                  <p className={`${raleway.className} text-2xl font-bold`}>{flashcardTopic}</p>
-                </div>
-                {/* Save Button: */}
-                <button className='bg-[#aec1f3] flex flex-row items-center justify-center
-                                   gap-2 p-2 border-2 border-black rounded-md hover:bg-[#c7d4f4]'
-                        onClick={saveFlashcardSet}>
-                  <BookmarkIcon className='w-4 h-4'/>
-                </button>
-              </div>
-              {/* Aproach 2 End */}
-
-
-              {/* Flashcard Container: */}
-              <div className="flex items-center justify-center">
-                {/* We want to create a stack of flashcards */}
-                {/* Only display the current flashcard */}
-                <Flashcard flashcard={flashcards[currentIndex]} index={currentIndex} />
-              </div>
-
-              <div className='flex flex-row justify-center items-center gap-16'>
-                {/* Previous Icon -- go to previous flashcard: */}
-                <button className='border-black border-2 rounded-2xl p-3 hover:bg-neutral-200'
-                        onClick={prevFlashcard}
-                >
-                  <ArrowLongLeftIcon className='w-5 h-5 text-black'/>
-                </button>
-
-                {/* Display Flashcard progress (in number): */}
-                <p className={` ${raleway.className} text-center text-black text-base`}>
-                  {currentIndex + 1} / {flashcardsTotal}
-                </p>
-
-                {/* Next Icon -- go to next flashcard: */}
-                <button className='border-black border-2 rounded-2xl p-3 hover:bg-neutral-200'
-                        onClick={nextFlashcard}
-                >
-                  <ArrowLongRightIcon className='w-5 h-5 text-black'/>
-                </button>
-              </div>
-            </div>
-
-            {/* Approach 2: */}
-            {/* Progress Bar for the Flashcard: */}
-            <div className='relative w-80 h-1 bg-neutral-300 mb-24 rounded-md'>
-              <div className='absolute top-0 left-0 bg-gradient-to-tr from-black to-[#6E94F9] h-full rounded-md'
-                  style={{ width: `${progressBar}%` }}>
-              </div>
-            </div>
-
-
-            {/* Appraoch 1: */}
-            {/* Progress Bar for the Flashcard: */}
-            {/* <div className='relative w-80 h-1 bg-neutral-300 mb-8 rounded-md'>
-              <div className='absolute top-0 left-0 bg-gradient-to-tr from-black to-[#6E94F9] h-full rounded-md'
-                  style={{ width: `${progressBar}%` }}>
-              </div>
-            </div> */}
-
-
-            {/* Save Button: */}
-            {/* <button className='bg-[#aec1f3] flex flex-row items-center justify-center mb-24 gap-2 p-3 px-7 border-[2px] border-black rounded-md'>
-              <BookmarkIcon className='w-4 h-4'/>
-              <p className='text-xs text-black'>Save</p>
-            </button> */}
-
-
-            {/* TODO: This is just a test */}
-            {/* <p>{localStorage.getItem("flashcardSets")}</p> */}
-          </div>
-
-        )}
+        {/* Dsiplay the Flashcards gotten from the API as a set: */}
+        <FlashcardSet flashcards={flashcards} flashcardTopic={flashcardTopic}/>
       </div>
     </div>
   )

@@ -2,13 +2,19 @@
 
 
 import { useState } from "react";
-import { ArrowPathIcon } from '@heroicons/react/20/solid';
+import { Raleway, Space_Mono } from "next/font/google";
+import { ArrowPathIcon } from '@heroicons/react/20/solid'
+
+
+const raleway = Raleway({ subsets: ["latin"] })
+const space_mono = Space_Mono({ subsets: ["latin"], weight: ["400", "700"] })
 
 
 /* Flashcard Component:
   * This is how a *single* flashcard will look and behave
   */
 export default function Flashcard({flashcard, index}) {
+
   /* Flip state of the flashcard */
   const [isFlipped, setIsFlipped] = useState(false);
 
