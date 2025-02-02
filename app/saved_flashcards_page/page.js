@@ -71,10 +71,11 @@ export default function SavedFlashcards() {
           <div className={`${raleway.className} flex flex-col w-full px-20 items-center justify-center gap-12`}>
 
             <div className="flex flex-row justify-between items-center w-full md:px-28 border-0 border-black">
+              {/* Saved Text: */}
               <p className="text-base">Saved:</p>
 
               {/* Search Bar: */}
-              <div className="flex justify-center items-center w-40 h-10 bg-[#f6f4f4] border-black border-[2px] rounded-xl">
+              <div className="flex justify-center items-center w-40 h-10 bg-[#f6f4f4] border-black border-b-[1px]">
                 {/* <textarea className="flex items-center justify-center bg-[#f6f4f4] w-full h-9 text-xs rounded-3xl no-scrollbar focus:outline-none"
                           value={text}
                           onChange={e => setText(e.target.value)}
