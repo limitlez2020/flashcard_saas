@@ -60,7 +60,7 @@ export default function SavedFlashcards() {
           {/* Page Header and subheader: */}
           <div className="flex flex-col text-center">
             <div className={`${raleway.className} lg:text-7xl md:text-6xl text-4xl font-bold`}>
-              <p>FLASHCARDS</p>
+              <p>CARDS</p>
             </div>
             <div className={`${space_mono.className} lg:text-lg md:text-lg text-base`}>
               <p>Here are your saved flashcards</p>
