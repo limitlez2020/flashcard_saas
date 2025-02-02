@@ -85,7 +85,7 @@ export default function SavedFlashcards() {
 
             {/* Flashcard Sets */}
             {/* Display in grid format for responsitivity: */}
-            <div className="flex flex-wrap justify-center gap-x-28">
+            <div className="flex flex-wrap justify-center gap-x-28 px-10">
 
               {/* Display All Flashcard Folders: */}
               {/* Map over every set of saved flashcards:
