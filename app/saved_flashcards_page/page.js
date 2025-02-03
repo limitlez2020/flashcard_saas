@@ -43,12 +43,6 @@ export default function SavedFlashcards() {
 
 
 
-  /* Function to toggle modal on and off: */
-  const handleCloseModal = () => {
-    setShowModal(false);
-  }
-
-
 
 
   return (
@@ -98,7 +92,7 @@ export default function SavedFlashcards() {
                   <div className="flex flex-row w-1/3 h-10 border-2 border-black rounded-sm
                                   mb-10 items-center justify-center gap-2 cursor-pointer
                                   hover:bg-gray-200"
-                       onClick={handleCloseModal}
+                       onClick={() => setShowModal(false)}
                   >
                     {/* <XMarkIcon className="w-5 h-5 cursor-pointer"/> */}
                     <ArrowLongLeftIcon className="w-4 h-4 cursor-pointer"/>
@@ -115,7 +109,7 @@ export default function SavedFlashcards() {
 
               <div className="flex flex-row justify-between items-center w-full md:px-28 border-0 border-black">
                 {/* Saved Text: */}
-                <p className="text-base">Saved:</p>
+                <p className={`${space_mono.className} text-base`}>Saved:</p>
 
                 {/* Search Bar: */}
                 <div className="flex justify-center items-center w-[120px] h-10 bg-none border-black border-b-[1px]">
@@ -124,8 +118,15 @@ export default function SavedFlashcards() {
                             onChange={e => setText(e.target.value)}
                             placeholder="search..."
                   /> */}
+                  <input
+                    type="text"
+                    value={text}
+                    onChange={e => setText(e.target.value)}
+                    placeholder="Search..."
+                    className={`${space_mono.className} w-28 h-9 px-1 text-xs bg-[#F1F1F1] no-scrollbar focus:outline-none`}
+                  />
 
-                  <div className="flex justify-end items-center w-full self-center p-2">
+                  <div className="flex justify-end items-center w-full self-center py-2">
                     <MagnifyingGlassIcon className="w-4 h-4"/>
                   </div>
                 </div>
