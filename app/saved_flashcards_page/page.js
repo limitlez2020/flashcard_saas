@@ -99,14 +99,14 @@ export default function SavedFlashcards() {
             <div>
               {selectedFlashcardSet && (
                 <div className="flex flex-col">
-                  <div className="flex flex-row w-1/3 h-10 border-2 border-black rounded-sm
+                  <div className="flex flex-row w-1/4 h-10 border-2 border-black rounded-sm
                                   mb-10 items-center justify-center gap-2 cursor-pointer
                                   hover:bg-gray-200"
                        onClick={() => setShowModal(false)}
                   >
                     {/* <XMarkIcon className="w-5 h-5 cursor-pointer"/> */}
-                    <ArrowLongLeftIcon className="w-4 h-4 cursor-pointer"/>
-                    <p className={`${space_mono.className}`}>Back</p>
+                    <ArrowLongLeftIcon className="w-3 h-3 cursor-pointer"/>
+                    <p className={`${space_mono.className} text-sm`}>Back</p>
                   </div>
                   <FlashcardSet flashcards={selectedFlashcardSet.flashcards} flashcardTopic={selectedFlashcardSet.topic}/>
                 </div>
