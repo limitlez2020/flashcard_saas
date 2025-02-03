@@ -16,7 +16,6 @@ export default function FlashcardSet({flashcards, flashcardTopic}) {
   const [currentIndex, setCurrentIndex] = useState(0);
   /* Total Number of Flashcards: */
   const flashcardsTotal = flashcards.length;
-  console.log("We're testing and the flashcards lenght is: ", flashcardsTotal);
   /* Flashcard Progress Bar Tracking: */
   const progressBar = ((currentIndex+1) / flashcardsTotal) * 100;
 
@@ -98,7 +97,7 @@ export default function FlashcardSet({flashcards, flashcardTopic}) {
     <div className={space_mono.className}>
       {flashcards.length > 0 && (
         <div className='flex flex-col justify-center items-center gap-5'>
-          <div className="flex flex-col justify-center items-center h-full mt-28 gap-5">
+          <div className="flex flex-col justify-center items-center h-full gap-5">
             
             {/* Display Title and save button: */}
             <div className='flex flex-row justify-between items-center w-80 gap-28'>

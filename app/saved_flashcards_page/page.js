@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Raleway, Space_Mono } from "next/font/google";
-import { AcademicCapIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { AcademicCapIcon, MagnifyingGlassIcon, ArrowLongLeftIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 import FlashcardFolder from "../components/flashcardFolder";
 import FlashcardSet from "../components/flashcardSet";
@@ -44,7 +44,7 @@ export default function SavedFlashcards() {
 
 
   /* Function to toggle modal on and off: */
-  const handleToggleModal = () => {
+  const handleCloseModal = () => {
     setShowModal(!showModal);
   }
 
@@ -94,7 +94,13 @@ export default function SavedFlashcards() {
             /* Display Modal: specific flashcard set */
             <div>
               {selectedFlashcardSet && (
-                <div className="">
+                <div className="flex flex-col"
+                     onClick={handleCloseModal}>
+                  <div className="flex flex-row w-1/3 h-10 border-2 border-black rounded-sm mb-10 items-center justify-center gap-2 cursor-pointer">
+                    {/* <XMarkIcon className="w-5 h-5 cursor-pointer"/> */}
+                    <ArrowLongLeftIcon className="w-4 h-4 cursor-pointer"/>
+                    <p className={`${space_mono.className}`}>Back</p>
+                  </div>
                   <FlashcardSet flashcards={selectedFlashcardSet.flashcards} flashcardTopic={selectedFlashcardSet.topic}/>
                 </div>
               )}

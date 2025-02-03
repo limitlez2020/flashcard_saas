@@ -107,7 +107,7 @@ export default function Generate() {
 
           <button
             onClick={handleSubmit}
-            className="w-full h-10 bg-[#282828] text-white self-center text-sm py-2 rounded-md hover:bg-[#0f0312]"
+            className="w-full h-10 mb-28 bg-[#282828] text-white self-center text-sm py-2 rounded-md hover:bg-[#0f0312]"
           >
             Generate
           </button>
