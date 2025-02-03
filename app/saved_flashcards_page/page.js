@@ -16,7 +16,9 @@ const space_mono = Space_Mono({ subsets: ['latin'], weight: ['400', '700'] });
 
 export default function SavedFlashcards() {
  const [text, setText] = useState("");
+ /* Flashcard sets the user saved */
  const [savedFlashcardSets, setSavedFlashcardSets] = useState([]);
+ /* Flashcard set the user clicks on */
  const [selectedFlashcardSet, setSelectedFlashcardSet] = useState(null);
  /* Modal state: */
  const [showModal, setShowModal] = useState(false);
@@ -40,6 +42,14 @@ export default function SavedFlashcards() {
     setSelectedFlashcardSet({flashcards, topic});
     setShowModal(true);
   }
+
+
+
+  /* Filter flashcard folders based on search */
+  const filteredFlashcardSets = Object.keys(savedFlashcardSets).filter((topic) =>
+    topic.toLowerCase().includes(text.toLowerCase()) /* Case insensitive */
+  );
+
 
 
 
@@ -142,8 +152,8 @@ export default function SavedFlashcards() {
                   * is an array of objects, so we can just map
                   * over the keys of the objects -- flashcard sets
                 */}
-                {savedFlashcardSets ? 
-                  (Object.keys(savedFlashcardSets).map((topic) => {
+                {filteredFlashcardSets ? (
+                  filteredFlashcardSets.map((topic) => {
                     const flashcards = savedFlashcardSets[topic];
                     var backgroundColor;
                     var foregroundColor;
