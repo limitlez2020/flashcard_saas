@@ -118,7 +118,7 @@ export default function SavedFlashcards() {
                 <p className="text-base">Saved:</p>
 
                 {/* Search Bar: */}
-                <div className="flex justify-center items-center w-36 h-10 bg-none border-black border-b-[1px]">
+                <div className="flex justify-center items-center w-[120px] h-10 bg-none border-black border-b-[1px]">
                   {/* <textarea className="flex items-center justify-center bg-[#f6f4f4] w-full h-9 text-xs rounded-3xl no-scrollbar focus:outline-none"
                             value={text}
                             onChange={e => setText(e.target.value)}
