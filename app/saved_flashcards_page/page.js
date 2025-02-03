@@ -45,7 +45,7 @@ export default function SavedFlashcards() {
 
   /* Function to toggle modal on and off: */
   const handleCloseModal = () => {
-    setShowModal(!showModal);
+    setShowModal(false);
   }
 
 
@@ -94,9 +94,11 @@ export default function SavedFlashcards() {
             /* Display Modal: specific flashcard set */
             <div>
               {selectedFlashcardSet && (
-                <div className="flex flex-col"
-                     onClick={handleCloseModal}>
-                  <div className="flex flex-row w-1/3 h-10 border-2 border-black rounded-sm mb-10 items-center justify-center gap-2 cursor-pointer">
+                <div className="flex flex-col">
+                  <div className="flex flex-row w-1/3 h-10 border-2 border-black rounded-sm
+                                  mb-10 items-center justify-center gap-2 cursor-pointer"
+                       onClick={handleCloseModal}
+                  >
                     {/* <XMarkIcon className="w-5 h-5 cursor-pointer"/> */}
                     <ArrowLongLeftIcon className="w-4 h-4 cursor-pointer"/>
                     <p className={`${space_mono.className}`}>Back</p>
