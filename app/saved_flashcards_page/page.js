@@ -18,6 +18,8 @@ export default function SavedFlashcards() {
  const [text, setText] = useState("");
  const [savedFlashcardSets, setSavedFlashcardSets] = useState([]);
  const [selectedFlashcardSet, setSelectedFlashcardSet] = useState(null);
+ /* Modal state: */
+ const [showModal, setShowModal] = useState(false);
 
 
   /* Get the saved flashcard sets from localstorage */
@@ -36,6 +38,14 @@ export default function SavedFlashcards() {
   /* Function to get the seclected flashcard set: */
   const handleFolderClick = ({flashcards, topic}) => {
     setSelectedFlashcardSet({flashcards, topic});
+    setShowModal(true);
+  }
+
+
+
+  /* Function to toggle modal on and off: */
+  const handleToggleModal = () => {
+    setShowModal(!showModal);
   }
 
 
@@ -76,99 +86,109 @@ export default function SavedFlashcards() {
             </div>
           </div>
 
-          {/* Display Flashcard Sets: */}
-          <div className={`${raleway.className} flex flex-col w-full px-20 items-center justify-center gap-12`}>
 
-            <div className="flex flex-row justify-between items-center w-full md:px-28 border-0 border-black">
-              {/* Saved Text: */}
-              <p className="text-base">Saved:</p>
-
-              {/* Search Bar: */}
-              <div className="flex justify-center items-center w-36 h-10 bg-none border-black border-b-[1px]">
-                {/* <textarea className="flex items-center justify-center bg-[#f6f4f4] w-full h-9 text-xs rounded-3xl no-scrollbar focus:outline-none"
-                          value={text}
-                          onChange={e => setText(e.target.value)}
-                          placeholder="search..."
-                /> */}
-
-                <div className="flex justify-end items-center w-full self-center p-2">
-                  <MagnifyingGlassIcon className="w-4 h-4"/>
+          {/* Show all the folders or a specific set of
+            * flashcards from a selected folder: 
+          */}
+          {showModal ? (
+            /* Display Modal: specific flashcard set */
+            <div>
+              {selectedFlashcardSet && (
+                <div className="">
+                  <FlashcardSet flashcards={selectedFlashcardSet.flashcards} flashcardTopic={selectedFlashcardSet.topic}/>
                 </div>
-              </div>
-            </div>
-
-            {/* Flashcard Sets */}
-            {/* Display in grid format for responsitivity: */}
-            <div className="flex flex-wrap justify-center gap-x-28 px-10">
-
-              {/* Display All Flashcard Folders: */}
-              {/* Map over every set of saved flashcards:
-                * Use Object.keys() to map because saveFlashcards
-                * is an array of objects, so we can just map
-                * over the keys of the objects -- flashcard sets
-              */}
-              {savedFlashcardSets ? 
-                (Object.keys(savedFlashcardSets).map((topic) => {
-                  const flashcards = savedFlashcardSets[topic];
-                  var backgroundColor;
-                  var foregroundColor;
-                  /* Randomly pick one of the color combos: */
-                  const colorCombo = Math.floor(Math.random() * 5)
-                  /* Pink */
-                  if (colorCombo === 0) {
-                    backgroundColor = "#1e0418";
-                    foregroundColor = "#4d0a3d";
-                  }
-                  /* Red */
-                  else if (colorCombo === 1) {
-                    backgroundColor = "#270505";
-                    foregroundColor = "#4e0a0a";
-                  }
-                  /* Green */
-                  else if (colorCombo === 2) {
-                    backgroundColor = "#031518";
-                    foregroundColor = "#073239";
-                  }
-                  /* Purple */
-                  else if (colorCombo === 3) {
-                    backgroundColor = "#170422";
-                    foregroundColor = "#32094a";
-                  }
-                  /* Blue */
-                  else {
-                    backgroundColor = "#060d2e";
-                    foregroundColor = "#0a164d";
-                  }
-        
-                  return (
-                    <FlashcardFolder 
-                      key={topic}
-                      flashcards={flashcards}
-                      topic={topic}
-                      backgroundColor={backgroundColor}
-                      foregroundColor={foregroundColor}
-                      onClick={() => handleFolderClick({ flashcards, topic })} 
-                    />
-                  )
-                })
-              ) : (
-                <p className={`${raleway.className} text-xs`}>
-                  No saved flashcards 🥺
-                </p>
               )}
             </div>
 
-          </div>
+          ) : (
+            /* Display Flashcard Sets: */
+            <div className={`${raleway.className} flex flex-col w-full px-20 items-center justify-center gap-12`}>
+
+              <div className="flex flex-row justify-between items-center w-full md:px-28 border-0 border-black">
+                {/* Saved Text: */}
+                <p className="text-base">Saved:</p>
+
+                {/* Search Bar: */}
+                <div className="flex justify-center items-center w-36 h-10 bg-none border-black border-b-[1px]">
+                  {/* <textarea className="flex items-center justify-center bg-[#f6f4f4] w-full h-9 text-xs rounded-3xl no-scrollbar focus:outline-none"
+                            value={text}
+                            onChange={e => setText(e.target.value)}
+                            placeholder="search..."
+                  /> */}
+
+                  <div className="flex justify-end items-center w-full self-center p-2">
+                    <MagnifyingGlassIcon className="w-4 h-4"/>
+                  </div>
+                </div>
+              </div>
+
+              {/* Flashcard Sets */}
+              {/* Display in grid format for responsitivity: */}
+              <div className="flex flex-wrap justify-center gap-x-28 px-10">
+
+                {/* Display All Flashcard Folders: */}
+                {/* Map over every set of saved flashcards:
+                  * Use Object.keys() to map because saveFlashcards
+                  * is an array of objects, so we can just map
+                  * over the keys of the objects -- flashcard sets
+                */}
+                {savedFlashcardSets ? 
+                  (Object.keys(savedFlashcardSets).map((topic) => {
+                    const flashcards = savedFlashcardSets[topic];
+                    var backgroundColor;
+                    var foregroundColor;
+                    /* Randomly pick one of the color combos: */
+                    const colorCombo = Math.floor(Math.random() * 5)
+                    /* Pink */
+                    if (colorCombo === 0) {
+                      backgroundColor = "#1e0418";
+                      foregroundColor = "#4d0a3d";
+                    }
+                    /* Red */
+                    else if (colorCombo === 1) {
+                      backgroundColor = "#270505";
+                      foregroundColor = "#4e0a0a";
+                    }
+                    /* Green */
+                    else if (colorCombo === 2) {
+                      backgroundColor = "#031518";
+                      foregroundColor = "#073239";
+                    }
+                    /* Purple */
+                    else if (colorCombo === 3) {
+                      backgroundColor = "#170422";
+                      foregroundColor = "#32094a";
+                    }
+                    /* Blue */
+                    else {
+                      backgroundColor = "#060d2e";
+                      foregroundColor = "#0a164d";
+                    }
+          
+                    return (
+                      <FlashcardFolder 
+                        key={topic}
+                        flashcards={flashcards}
+                        topic={topic}
+                        backgroundColor={backgroundColor}
+                        foregroundColor={foregroundColor}
+                        onClick={() => handleFolderClick({ flashcards, topic })} 
+                      />
+                    )
+                  })
+                ) : (
+                  <p className={`${raleway.className} text-xs`}>
+                    No saved flashcards 🥺
+                  </p>
+                )}
+              </div>
+
+            </div>
+
+          )}
 
         </div>
 
-
-        {/* TODO: Testing */}
-        {selectedFlashcardSet && (
-        <div className="w-full h-full bg-white p-5">
-          <FlashcardSet flashcards={selectedFlashcardSet.flashcards} flashcardTopic={selectedFlashcardSet.topic}/>
-        </div>
-      )}
       </div>
   );
 }
