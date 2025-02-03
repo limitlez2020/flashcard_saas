@@ -73,7 +73,7 @@ export default function FlashcardSet({flashcards, flashcardTopic, saved}) {
   /*  - i.e. delete the flashcard set from the localStorage:  */
   const unsaveFlashcardSet = () => {
     /* Get the existing flashcard sets in localstorage */
-    const existingSets = localStorage.
+    // const existingSets = localStorage.
 
 
     /* Set the saved state to be false: */

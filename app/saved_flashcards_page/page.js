@@ -23,6 +23,9 @@ export default function SavedFlashcards() {
  /* Modal state: */
  const [showModal, setShowModal] = useState(false);
 
+ /* To track if flashcard set is saved */
+ const saved = true;
+
 
   /* Get the saved flashcard sets from localstorage */
   useEffect(() => {
@@ -108,7 +111,7 @@ export default function SavedFlashcards() {
                     <ArrowLongLeftIcon className="w-3 h-3 cursor-pointer"/>
                     <p className={`${space_mono.className} text-sm`}>Back</p>
                   </div>
-                  <FlashcardSet flashcards={selectedFlashcardSet.flashcards} flashcardTopic={selectedFlashcardSet.topic}/>
+                  <FlashcardSet flashcards={selectedFlashcardSet.flashcards} flashcardTopic={selectedFlashcardSet.topic} saved={saved}/>
                 </div>
               )}
             </div>
