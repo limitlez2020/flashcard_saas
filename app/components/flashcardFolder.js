@@ -22,7 +22,7 @@ export default function FlashcardFolder ({topic, onClick, foregroundColor, backg
         />
 
         {/* Card inside Folder: */}
-        <div className="absolute top-9 left-2 bg-white w-40 h-24 rounded-md -rotate-1 hover:top-8 shadow-2xl"/>
+        <div className="absolute top-9 left-2 bg-white w-40 h-24 rounded-sm -rotate-1 hover:top-8 shadow-2xl"/>
 
         {/* Folder Foreground: */}
         <div className="absolute top-12 w-48 h-[146px] rounded-lg shadow-2xl"
