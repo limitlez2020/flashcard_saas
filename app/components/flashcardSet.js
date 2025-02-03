@@ -54,7 +54,7 @@ export default function FlashcardSet({flashcards, flashcardTopic, saved}) {
     /* Turn the string into an object */
     const existingSetsObject = existingSets ? JSON.parse(existingSets) : {};
 
-    /* Now we add the new flashcard set to the existing sets */
+    /* Now we add the new flashcard set to the existing sets object */
     existingSetsObject[flashcardTopic] = flashcards;
 
     /* Update the localstorage with the newly added flashcard set */
@@ -73,8 +73,13 @@ export default function FlashcardSet({flashcards, flashcardTopic, saved}) {
   /*  - i.e. delete the flashcard set from the localStorage:  */
   const unsaveFlashcardSet = () => {
     /* Get the existing flashcard sets in localstorage */
-    // const existingSets = localStorage.
-
+    const existingSets = localStorage.getItem("flashcardSets");
+    /* Turn the string into an object */
+    const existingSetsObject = existingSets ? JSON.parse(existingSets) : {};
+    /* Now we delete the flashcard set from the existing sets object */
+    delete existingSetsObject[flashcardTopic];
+    /* Update the localstorage to reflect this change: */
+    localStorage.setItem("flashcardSets", JSON.stringify(existingSetsObject));
 
     /* Set the saved state to be false: */
     setIsSaved(false);
