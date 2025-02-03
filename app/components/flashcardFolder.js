@@ -17,7 +17,7 @@ export default function FlashcardFolder ({topic, onClick, foregroundColor, backg
     >
       <div className="flex relative w-44 h-32 cursor-pointer">
         {/* Folder Background: */}
-        <div className="absolute top-4 left-0 w-full h-full rounded-2xl shadow-2xl"
+        <div className="absolute top-4 left-0 w-full h-full rounded-lg shadow-2xl"
               style={{backgroundColor: backgroundColor}}
         />
 
@@ -25,7 +25,7 @@ export default function FlashcardFolder ({topic, onClick, foregroundColor, backg
         <div className="absolute top-9 left-2 bg-white w-40 h-24 rounded-md -rotate-1 hover:top-8 shadow-2xl"/>
 
         {/* Folder Foreground: */}
-        <div className="absolute top-12 w-48 h-[146px] rounded-2xl shadow-2xl"
+        <div className="absolute top-12 w-48 h-[146px] rounded-lg shadow-2xl"
               style={{backgroundColor: foregroundColor}}
         />
 

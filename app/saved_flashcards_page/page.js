@@ -96,7 +96,8 @@ export default function SavedFlashcards() {
               {selectedFlashcardSet && (
                 <div className="flex flex-col">
                   <div className="flex flex-row w-1/3 h-10 border-2 border-black rounded-sm
-                                  mb-10 items-center justify-center gap-2 cursor-pointer"
+                                  mb-10 items-center justify-center gap-2 cursor-pointer
+                                  hover:bg-gray-200"
                        onClick={handleCloseModal}
                   >
                     {/* <XMarkIcon className="w-5 h-5 cursor-pointer"/> */}
