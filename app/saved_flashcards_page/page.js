@@ -6,6 +6,7 @@ import { Raleway, Space_Mono } from "next/font/google";
 import { AcademicCapIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 import FlashcardFolder from "../components/flashcardFolder";
+import FlashcardSet from "../components/flashcardSet";
 
 const raleway = Raleway({ subsets: ['latin'] });
 const space_mono = Space_Mono({ subsets: ['latin'], weight: ['400', '700'] });
@@ -16,6 +17,7 @@ const space_mono = Space_Mono({ subsets: ['latin'], weight: ['400', '700'] });
 export default function SavedFlashcards() {
  const [text, setText] = useState("");
  const [savedFlashcardSets, setSavedFlashcardSets] = useState([]);
+ const [selectedFlashcardSet, setSelectedFlashcardSet] = useState(null);
 
 
   /* Get the saved flashcard sets from localstorage */
@@ -28,6 +30,13 @@ export default function SavedFlashcards() {
       }
     }
   }, []);
+
+
+
+  /* Function to get the seclected flashcard set: */
+  const handleFolderClick = ({flashcards, topic}) => {
+    setSelectedFlashcardSet({flashcards, topic});
+  }
 
 
 
@@ -75,14 +84,14 @@ export default function SavedFlashcards() {
               <p className="text-base">Saved:</p>
 
               {/* Search Bar: */}
-              <div className="flex justify-center items-center w-40 h-10 bg-[#f6f4f4] border-black border-b-[1px]">
+              <div className="flex justify-center items-center w-36 h-10 bg-none border-black border-b-[1px]">
                 {/* <textarea className="flex items-center justify-center bg-[#f6f4f4] w-full h-9 text-xs rounded-3xl no-scrollbar focus:outline-none"
                           value={text}
                           onChange={e => setText(e.target.value)}
                           placeholder="search..."
                 /> */}
 
-                <div className="flex justify-end items-center w-full self-center p-3">
+                <div className="flex justify-end items-center w-full self-center p-2">
                   <MagnifyingGlassIcon className="w-4 h-4"/>
                 </div>
               </div>
@@ -138,6 +147,7 @@ export default function SavedFlashcards() {
                       topic={topic}
                       backgroundColor={backgroundColor}
                       foregroundColor={foregroundColor}
+                      onClick={() => handleFolderClick({ flashcards, topic })} 
                     />
                   )
                 })
@@ -151,6 +161,14 @@ export default function SavedFlashcards() {
           </div>
 
         </div>
+
+
+        {/* TODO: Testing */}
+        {selectedFlashcardSet && (
+        <div className="w-full h-full bg-white p-5">
+          <FlashcardSet flashcards={selectedFlashcardSet.flashcards} flashcardTopic={selectedFlashcardSet.topic}/>
+        </div>
+      )}
       </div>
   );
 }

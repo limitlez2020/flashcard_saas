@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Raleway, Space_Mono } from "next/font/google";
 import { ArrowLongLeftIcon, ArrowLongRightIcon } from '@heroicons/react/20/solid';
 import { BookmarkIcon } from '@heroicons/react/24/outline'
@@ -21,6 +21,10 @@ export default function FlashcardSet({flashcards, flashcardTopic}) {
   const progressBar = ((currentIndex+1) / flashcardsTotal) * 100;
 
 
+  /* TODO: Reset the currentIndex of flashcards to 0 when page reloads: */
+  // useEffect(() => {
+  //   setCurrentIndex(0);
+  // }, []);
 
 
 

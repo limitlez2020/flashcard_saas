@@ -8,17 +8,12 @@ const space_mono = Space_Mono({ subsets: ["latin"], weight: ["400", "700"] })
 
 
 
-export default function FlashcardFolder ({topic, flashcards, foregroundColor, backgroundColor}) {
-  /* Function to display the flashcards in this flashcard folder: */
-  // const displayFlashcards = ( flashcards ) => {
-  //   return <div className="w-full h-full bg-black text-white z-50">{flashcards}</div>
-  // }
-
+export default function FlashcardFolder ({topic, onClick, foregroundColor, backgroundColor}) {
 
   return (
     /* Individual Folder: */
     <div className="flex flex-col gap-[88px] mb-24"
-         onClick={() => displayFlashcards(flashcards)}
+         onClick={onClick}
     >
       <div className="flex relative w-44 h-32 cursor-pointer">
         {/* Folder Background: */}
