@@ -152,13 +152,21 @@ export default function SavedFlashcards() {
                   * is an array of objects, so we can just map
                   * over the keys of the objects -- flashcard sets
                 */}
-                {filteredFlashcardSets ? (
+                {filteredFlashcardSets.length > 0 ? (
                   filteredFlashcardSets.map((topic) => {
                     const flashcards = savedFlashcardSets[topic];
                     var backgroundColor;
                     var foregroundColor;
                     /* Randomly pick one of the color combos: */
-                    const colorCombo = Math.floor(Math.random() * 5)
+                    // const colorCombo = Math.floor(Math.random() * 5);
+
+                    let hash = 0;
+                    for (let i = 0; i < topic.length; i++) {
+                      hash = (hash << 5) - hash + topic.charCodeAt(i);
+                    }
+                  
+                    const colorCombo = Math.abs(hash) % 5;
+
                     /* Pink */
                     if (colorCombo === 0) {
                       backgroundColor = "#1e0418";
