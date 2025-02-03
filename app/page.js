@@ -15,6 +15,8 @@ export default function Generate() {
   const [text, setText] = useState('');
   const [flashcards, setFlashcards] = useState([]);
   const [flashcardTopic, setFlashcardTopic] = useState('');
+  /* To determine if the flashcard set is saved: */
+  const saved = false;
 
   const handleSubmit = async () => {
     if (!text.trim()) {
@@ -115,7 +117,7 @@ export default function Generate() {
         
         
         {/* Dsiplay the Flashcards gotten from the API as a set: */}
-        <FlashcardSet flashcards={flashcards} flashcardTopic={flashcardTopic}/>
+        <FlashcardSet flashcards={flashcards} flashcardTopic={flashcardTopic} saved={saved}/>
       </div>
     </div>
   )

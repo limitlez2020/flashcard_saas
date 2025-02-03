@@ -1,8 +1,8 @@
 "use client"
 import { useState, useEffect } from "react";
 import { Raleway, Space_Mono } from "next/font/google";
-import { ArrowLongLeftIcon, ArrowLongRightIcon } from '@heroicons/react/20/solid';
-import { BookmarkIcon } from '@heroicons/react/24/outline'
+import { ArrowLongLeftIcon, ArrowLongRightIcon, BookmarkIcon as SolidBookMarkIocn } from '@heroicons/react/20/solid';
+import { BookmarkIcon as OutlineBookMarkIcon } from '@heroicons/react/24/outline'
 
 
 import Flashcard from "./flashcard";
@@ -11,13 +11,15 @@ const raleway = Raleway({ subsets: ["latin"] });
 const space_mono = Space_Mono({ subsets: ["latin"], weight: ["400", "700"] });
 
 
-export default function FlashcardSet({flashcards, flashcardTopic}) {
+export default function FlashcardSet({flashcards, flashcardTopic, saved}) {
   /* Track which flashcard is being displayed */
   const [currentIndex, setCurrentIndex] = useState(0);
   /* Total Number of Flashcards: */
   const flashcardsTotal = flashcards.length;
   /* Flashcard Progress Bar Tracking: */
   const progressBar = ((currentIndex+1) / flashcardsTotal) * 100;
+  /* State to track if the flashcard set is saved */
+  const [isSaved, setIsSaved] = useState(saved);
 
 
   /* TODO: Reset the currentIndex of flashcards to 0 when page reloads: */
@@ -58,8 +60,27 @@ export default function FlashcardSet({flashcards, flashcardTopic}) {
     /* Update the localstorage with the newly added flashcard set */
     localStorage.setItem("flashcardSets", JSON.stringify(existingSetsObject));
 
-    console.log("This is what is in the flashcardSets: ", JSON.stringify(existingSetsObject));
+    /* Set saved state to true: */
+    setIsSaved(true);
   }
+
+
+
+
+
+
+  /* Unsave Flashcard set */
+  /*  - i.e. delete the flashcard set from the localStorage:  */
+  const unsaveFlashcardSet = () => {
+    /* Get the existing flashcard sets in localstorage */
+    const existingSets = localStorage.
+
+
+    /* Set the saved state to be false: */
+    setIsSaved(false);
+  }
+
+
 
 
 
@@ -105,14 +126,24 @@ export default function FlashcardSet({flashcards, flashcardTopic}) {
               <div className='flex'>
                 <p className={`${raleway.className} text-2xl font-bold`}>{flashcardTopic}</p>
               </div>
-              {/* Save Button: */}
-              <button className='bg-[#aec1f3] flex flex-row items-center justify-center
-                                  gap-2 p-2 border-2 border-black rounded-md hover:bg-[#c7d4f4]'
-                      onClick={saveFlashcardSet}>
-                <BookmarkIcon className='w-4 h-4'/>
-              </button>
+
+              {/* Show icon to save or unsave flashcard: */}
+              {isSaved ? (
+                /* Saved state: */
+                <button className='bg-[#aec1f3] flex flex-row items-center justify-center
+                                    gap-2 p-2 border-2 border-black rounded-md hover:bg-[#c7d4f4]'
+                        onClick={unsaveFlashcardSet}> 
+                  <SolidBookMarkIocn className='text-black w-4 h-4'/>
+                </button>
+              ) : (
+                /* Unsaved state: */
+                <button className='bg-[#aec1f3] flex flex-row items-center justify-center
+                                    gap-2 p-2 border-2 border-black rounded-md hover:bg-[#c7d4f4]'
+                        onClick={saveFlashcardSet}>
+                  <OutlineBookMarkIcon className='w-4 h-4'/>
+                </button>
+              )}
             </div>
-            {/* Aproach 2 End */}
 
 
             {/* Flashcard Container: */}
