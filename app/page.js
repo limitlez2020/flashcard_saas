@@ -117,7 +117,11 @@ export default function Generate() {
         
         
         {/* Dsiplay the Flashcards gotten from the API as a set: */}
-        <FlashcardSet flashcards={flashcards} flashcardTopic={flashcardTopic} saved={saved}/>
+        <FlashcardSet
+          flashcards={flashcards}
+          flashcardTopic={flashcardTopic}
+          isSetSaved={saved}
+        />
       </div>
     </div>
   )

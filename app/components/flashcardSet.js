@@ -11,7 +11,7 @@ const raleway = Raleway({ subsets: ["latin"] });
 const space_mono = Space_Mono({ subsets: ["latin"], weight: ["400", "700"] });
 
 
-export default function FlashcardSet({flashcards, flashcardTopic, saved}) {
+export default function FlashcardSet({flashcards, flashcardTopic, isSetSaved}) {
   /* Track which flashcard is being displayed */
   const [currentIndex, setCurrentIndex] = useState(0);
   /* Total Number of Flashcards: */
@@ -19,7 +19,7 @@ export default function FlashcardSet({flashcards, flashcardTopic, saved}) {
   /* Flashcard Progress Bar Tracking: */
   const progressBar = ((currentIndex+1) / flashcardsTotal) * 100;
   /* State to track if the flashcard set is saved */
-  const [isSaved, setIsSaved] = useState(saved);
+  const [isSaved, setIsSaved] = useState(isSetSaved);
 
 
   /* TODO: Reset the currentIndex of flashcards to 0 when page reloads: */

@@ -24,7 +24,7 @@ export default function SavedFlashcards() {
  const [showModal, setShowModal] = useState(false);
 
  /* To track if flashcard set is saved */
- const saved = true;
+ const isSaved = true;
 
 
   /* Get the saved flashcard sets from localstorage */
@@ -53,6 +53,17 @@ export default function SavedFlashcards() {
     topic.toLowerCase().includes(text.toLowerCase()) /* Case insensitive */
   );
 
+
+
+
+  /* Function to show modal -- set of flashcards of the folder clicked */
+  const handleBackButton = () => {
+    setShowModal(false);
+    /* Reload the page */
+    /* So changes show on page */
+    window.location.reload();
+  }
+  
 
 
 
@@ -105,13 +116,17 @@ export default function SavedFlashcards() {
                   <div className="flex flex-row w-1/4 h-10 border-2 border-black rounded-sm
                                   mb-10 items-center justify-center gap-2 cursor-pointer
                                   hover:bg-gray-200"
-                       onClick={() => setShowModal(false)}
+                       onClick={handleBackButton}
                   >
                     {/* <XMarkIcon className="w-5 h-5 cursor-pointer"/> */}
                     <ArrowLongLeftIcon className="w-3 h-3 cursor-pointer"/>
                     <p className={`${space_mono.className} text-sm`}>Back</p>
                   </div>
-                  <FlashcardSet flashcards={selectedFlashcardSet.flashcards} flashcardTopic={selectedFlashcardSet.topic} saved={saved}/>
+                  <FlashcardSet 
+                    flashcards={selectedFlashcardSet.flashcards}
+                    flashcardTopic={selectedFlashcardSet.topic}
+                    isSetSaved={isSaved}
+                  />
                 </div>
               )}
             </div>
