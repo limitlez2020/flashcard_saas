@@ -8,7 +8,7 @@ const space_mono = Space_Mono({ subsets: ["latin"], weight: ["400", "700"] })
 
 
 
-export default function FlashcardFolder ({topic, onClick, foregroundColor, backgroundColor}) {
+export default function FlashcardFolder ({topic, flashcardsNum, foregroundColor, backgroundColor, onClick}) {
 
   return (
     /* Individual Folder: */
@@ -38,7 +38,7 @@ export default function FlashcardFolder ({topic, onClick, foregroundColor, backg
       {/* Title - of set of flashcards: */}
       <div className="px-3">
         <p className={` ${raleway.className} font-medium text-xl`}>{topic}</p>
-        <p className={`${space_mono.className} font-light text-sm`}>3 flashcards</p>
+        <p className={`${space_mono.className} font-light text-sm`}>{flashcardsNum} flashcards</p>
       </div>
     </div>
   )

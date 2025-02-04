@@ -209,8 +209,8 @@ export default function SavedFlashcards() {
                     return (
                       <FlashcardFolder 
                         key={topic}
-                        flashcards={flashcards}
                         topic={topic}
+                        flashcardsNum={flashcards.length}
                         backgroundColor={backgroundColor}
                         foregroundColor={foregroundColor}
                         onClick={() => handleFolderClick({ flashcards, topic })} 
