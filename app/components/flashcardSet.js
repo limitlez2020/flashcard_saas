@@ -22,12 +22,6 @@ export default function FlashcardSet({flashcards, flashcardTopic, isSetSaved}) {
   const [isSaved, setIsSaved] = useState(isSetSaved);
 
 
-  /* TODO: Reset the currentIndex of flashcards to 0 when page reloads: */
-  // useEffect(() => {
-  //   setCurrentIndex(0);
-  // }, []);
-
-
 
   /* Add a flashcard set to the flashcardSets in the localstorage: */
   /** Set an item in localstorage:
