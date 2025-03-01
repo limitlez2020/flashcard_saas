@@ -106,8 +106,7 @@ export default function SavedFlashcards() {
 
 
           {/* Show all the folders or a specific set of
-            * flashcards from a selected folder: 
-          */}
+            * flashcards from a selected folder: */}
           {showModal ? (
             /* Display Modal: specific flashcard set */
             <div>
