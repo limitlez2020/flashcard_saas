@@ -15,13 +15,24 @@ export default function Generate() {
   const [text, setText] = useState('');
   const [flashcards, setFlashcards] = useState([]);
   const [flashcardTopic, setFlashcardTopic] = useState('');
+  const [generating, setGenerating] = useState(false);
   /* To determine if the flashcard set is saved: */
   const saved = false;
 
   const handleSubmit = async () => {
+    /* User tries to generate while ai is generating response: */
+    if (generating) {
+      return;
+    }
+
+    /* Empty text string from user */
     if (!text.trim()) {
       return;
     }
+
+    /* Set the generating state to true before trying to get the AI response */
+    setGenerating(true)
+
   
     try {
       const response = await fetch('/api/generate', {
@@ -45,9 +56,14 @@ export default function Generate() {
       setFlashcardTopic(data.topic)
       /* Extract the flashcards array from the data object */
       setFlashcards(data.flashcards)
-    } catch (error) {
+    }
+    catch (error) {
       console.error('Error generating flashcards:', error)
       alert('An error occurred while generating flashcards. Please try again.')
+    }
+    finally {
+      /* reset the generating state */
+      setGenerating(false)
     }
   }
 
@@ -111,7 +127,7 @@ export default function Generate() {
             onClick={handleSubmit}
             className="w-full h-10 mb-28 bg-[#282828] text-white self-center text-sm py-2 rounded-md hover:bg-[#0f0312]"
           >
-            Generate
+            {generating ? "Generating..." : "Generate"}
           </button>
         </div>
         
